@@ -1,48 +1,33 @@
-#include <libft.h>
+#include <limits.h>
 
-long long	ft_atoll(const char *str)
+long long ft_lloverflow(int sign, long long LLONG_MAX, long long LLONG_MIN)
 {
-	int			i;
-	int			sign;
-	long long	result;
+	if (sign == 1)
+		return (LLONG_MAX);
+	return (LLONG_MIN);
+}
 
-	i = 0;
+long	ft_atol(const char *str)
+{
+	int		i;
+	int		sign;
+	long	result;
+
+	i = ft_skspace(str);
 	sign = 1;
 	result = 0;
-	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
-		i++;
 	if (str[i] == '-' || str[i] == '+')
 	{
 		if (str[i] == '-')
 			sign = -1;
 		i++;
 	}
-	while (str[i] >= '0' && str[i] <= '9')
+	while (ft_isdigit(str[i])
 	{
 		if (result > (LLONG_MAX - (str[i] - '0')) / 10)
-		{
-			if (sign == 1)
-				return LLONG_MAX;
-			else
-				return LLONG_MIN;
-		}
+			return (ft_lloverflow(sign, LLONG_MAX, LLONG_MIN));
 		result = result * 10 + (str[i] - '0');
 		i++;
 	}
 	return (result * sign);
 }
-
-/*
- #include <stdio.h>
-int	main(void)
-{
-	printf("%lld\n", ft_atoll("92233720368547758070")); // Expect overflow: LLONG_MAX
-	printf("%lld\n", ft_atoll("9223372036854775807")); // Expect: LLONG_MAX
-	printf("%lld\n", ft_atoll("1"));                    // Expect: 1
-	printf("%lld\n", ft_atoll("0"));                    // Expect: 0
-	printf("%lld\n", ft_atoll("-1"));                   // Expect: -1
-	printf("%lld\n", ft_atoll("-9223372036854775808")); // Expect: LLONG_MIN
-	printf("%lld\n", ft_atoll("-92233720368547758070")); // Expect overflow: LLONG_MIN
-	return (0);
-}
-*/

@@ -1,6 +1,15 @@
-#include <libft.h>
+#include <limits.h>
 
-long	ft_atoll(const char *str)
+// Handles overflow and underflow for any type
+long long ft_loverflow(int sign, long LONG_MAX, long LONG_MIN)
+{
+	if (sign == 1)
+		return (LONG_MAX);
+	return (LONG_MIN);
+}
+
+// Your ft_atol function
+long	ft_atol(const char *str)
 {
 	int		i;
 	int		sign;
@@ -18,7 +27,7 @@ long	ft_atoll(const char *str)
 	while (str[i] >= '0' && str[i] <= '9')
 	{
 		if (result > (LONG_MAX - (str[i] - '0')) / 10)
-			return (ft_loverflow(sign));
+			return (ft_loverflow(sign, LONG_MAX, LONG_MIN));
 		result = result * 10 + (str[i] - '0');
 		i++;
 	}
