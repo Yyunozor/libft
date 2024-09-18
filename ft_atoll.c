@@ -1,4 +1,4 @@
-#include <limits.h>
+#include <libft.h>
 
 long long	ft_atoll(const char *str)
 {
@@ -32,14 +32,17 @@ long long	ft_atoll(const char *str)
 	return (result * sign);
 }
 
-#include <stdio.h>
-
+/*
+ #include <stdio.h>
 int	main(void)
 {
 	printf("%lld\n", ft_atoll("92233720368547758070")); // Expect overflow: LLONG_MAX
+	printf("%lld\n", ft_atoll("9223372036854775807")); // Expect: LLONG_MAX
 	printf("%lld\n", ft_atoll("1"));                    // Expect: 1
 	printf("%lld\n", ft_atoll("0"));                    // Expect: 0
 	printf("%lld\n", ft_atoll("-1"));                   // Expect: -1
 	printf("%lld\n", ft_atoll("-9223372036854775808")); // Expect: LLONG_MIN
+	printf("%lld\n", ft_atoll("-92233720368547758070")); // Expect overflow: LLONG_MIN
 	return (0);
 }
+*/
