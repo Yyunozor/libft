@@ -1,3 +1,5 @@
+#include <ctype.h>
+
 int	isalnum(int c)
 {
 	if ((c >= '0' && c <= '9')
