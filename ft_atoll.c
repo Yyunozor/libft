@@ -1,4 +1,4 @@
-#include <limits.h>
+#include <libft.h>
 
 long long ft_lloverflow(int sign)
 {
@@ -7,7 +7,7 @@ long long ft_lloverflow(int sign)
 	return (LLONG_MIN);
 }
 
-long	ft_atol(const char *str)
+long	ft_atoll(const char *str)
 {
 	int		i;
 	int		sign;
