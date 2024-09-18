@@ -1,6 +1,6 @@
 #include <limits.h>
 
-long long ft_lloverflow(int sign, long long LLONG_MAX, long long LLONG_MIN)
+long long ft_lloverflow(int sign)
 {
 	if (sign == 1)
 		return (LLONG_MAX);
@@ -25,7 +25,7 @@ long	ft_atol(const char *str)
 	while (ft_isdigit(str[i])
 	{
 		if (result > (LLONG_MAX - (str[i] - '0')) / 10)
-			return (ft_lloverflow(sign, LLONG_MAX, LLONG_MIN));
+			return (ft_lloverflow(sign));
 		result = result * 10 + (str[i] - '0');
 		i++;
 	}

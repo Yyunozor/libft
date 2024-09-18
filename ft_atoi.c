@@ -28,3 +28,4 @@ int	ft_atoi(const char *str)
 	}
 	return ((int)(result * sign));
 }
+
