@@ -20,7 +20,12 @@ long long	ft_atoll(const char *str)
 	while (str[i] >= '0' && str[i] <= '9')
 	{
 		if (result > (LLONG_MAX - (str[i] - '0')) / 10)
-			return (sign == 1 ? LLONG_MAX : LLONG_MIN);
+		{
+			if (sign == 1)
+				return LLONG_MAX;
+			else
+				return LLONG_MIN;
+		}
 		result = result * 10 + (str[i] - '0');
 		i++;
 	}
@@ -29,10 +34,12 @@ long long	ft_atoll(const char *str)
 
 #include <stdio.h>
 
-int		main(void)
+int	main(void)
 {
-	printf("%lld\n", ft_atoll("92233720368547758070"));
-	printf("%lld\n", ft_atoll("1"));
-	printf("%lld\n", ft_atoll("-9223372036854775808"));
+	printf("%lld\n", ft_atoll("92233720368547758070")); // Expect overflow: LLONG_MAX
+	printf("%lld\n", ft_atoll("1"));                    // Expect: 1
+	printf("%lld\n", ft_atoll("0"));                    // Expect: 0
+	printf("%lld\n", ft_atoll("-1"));                   // Expect: -1
+	printf("%lld\n", ft_atoll("-9223372036854775808")); // Expect: LLONG_MIN
 	return (0);
 }
