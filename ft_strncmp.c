@@ -6,16 +6,18 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 18:58:17 by anpayot           #+#    #+#             */
-/*   Updated: 2024/09/24 12:17:55 by anpayot          ###   ########.fr       */
+/*   Updated: 2024/09/24 17:37:36 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
+#include <libft.h>
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
 	size_t	i;
 
+	if (!s1 || !s2)
+		return (-1);
 	i = 0;
 	while (i < n && s1[i] && s2[i])
 	{
