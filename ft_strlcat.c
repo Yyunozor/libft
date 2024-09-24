@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strlcat.c                                          :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 22:46:03 by anpayot           #+#    #+#             */
-/*   Updated: 2024/09/24 23:02:39 by anpayot          ###   ########.fr       */
+/*   Updated: 2024/09/24 23:52:21 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
+#include <stddef.h>#include <stddef.h>
 
 size_t ft_strlcat(char *dst, const char *src, size_t size)
 {

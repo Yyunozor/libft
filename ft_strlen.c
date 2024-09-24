@@ -6,10 +6,9 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 18:33:22 by anpayot           #+#    #+#             */
-/*   Updated: 2024/09/24 23:45:18 by anpayot          ###   ########.fr       */
+/*   Updated: 2024/09/25 00:05:58 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 size_t	ft_strlen(const char *s)
 {
