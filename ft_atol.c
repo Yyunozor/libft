@@ -6,13 +6,13 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 19:30:22 by anpayot           #+#    #+#             */
-/*   Updated: 2024/09/24 12:16:55 by anpayot          ###   ########.fr       */
+/*   Updated: 2024/09/25 00:37:10 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
 
-long long ft_loverflow(int sign)
+long long	ft_loverflow(int sign)
 {
 	if (sign == 1)
 		return (LONG_MAX);
@@ -37,7 +37,7 @@ long	ft_atol(const char *str)
 	while (str[i] >= '0' && str[i] <= '9')
 	{
 		if (result > (LONG_MAX - (str[i] - '0')) / 10)
-			return (ft_loverflow(sign);
+			return (ft_loverflow(sign));
 		result = result * 10 + (str[i] - '0');
 		i++;
 	}

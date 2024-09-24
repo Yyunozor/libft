@@ -6,13 +6,13 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 19:30:22 by anpayot           #+#    #+#             */
-/*   Updated: 2024/09/25 00:13:37 by anpayot          ###   ########.fr       */
+/*   Updated: 2024/09/25 00:36:49 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
 
-long long ft_lloverflow(int sign)
+long long	ft_lloverflow(int sign)
 {
 	if (sign == 1)
 		return (LLONG_MAX);
@@ -34,7 +34,7 @@ long	ft_atoll(const char *str)
 			sign = -1;
 		i++;
 	}
-	while (ft_isdigit(str[i])
+	while (ft_isdigit(str[i]))
 	{
 		if (result > (LLONG_MAX - (str[i] - '0')) / 10)
 			return (ft_lloverflow(sign));
