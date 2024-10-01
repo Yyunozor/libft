@@ -6,11 +6,11 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 00:26:41 by anpayot           #+#    #+#             */
-/*   Updated: 2024/10/02 00:47:43 by anpayot          ###   ########.fr       */
+/*   Updated: 2024/10/02 00:51:18 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void ft_bzero(void *s, size_t n)
+void	ft_bzero(void *s, size_t n)
 {
 	ft_memset(s, 0, n);
 }
