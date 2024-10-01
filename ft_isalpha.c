@@ -6,11 +6,11 @@
 /*   By: anpayot <anpayot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 16:21:22 by anpayot           #+#    #+#             */
-/*   Updated: 2024/10/01 16:23:24 by anpayot          ###   ########.fr       */
+/*   Updated: 2024/10/01 16:36:34 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int ft_isalpha(int c)
+int	ft_isalpha(int c)
 {
 	return ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'));
 }
