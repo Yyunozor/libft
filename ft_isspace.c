@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isspace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: anpayot <anpayot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 16:11:46 by anpayot           #+#    #+#             */
-/*   Updated: 2024/09/24 16:47:07 by anpayot          ###   ########.fr       */
+/*   Updated: 2024/10/01 16:25:10 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_isspace(int c)
 {
-	if ((c >= 9 && c <= 13) || c == 32)
-		return (1);
-	return (0);
+	return ((c >= 9 && c <= 13) || c == 32)
 }

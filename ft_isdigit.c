@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: anpayot <anpayot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 19:36:28 by anpayot           #+#    #+#             */
-/*   Updated: 2024/09/24 12:17:29 by anpayot          ###   ########.fr       */
+/*   Updated: 2024/10/01 16:24:55 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_isdigit(int c)
 {
-	if (c >= '0' && c <= '9')
-		return (1);
-	return (0);
+	return (c >= '0' && c <= '9')
 }

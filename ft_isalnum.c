@@ -5,18 +5,16 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: anpayot <anpayot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/17 19:39:57 by anpayot           #+#    #+#             */
-/*   Updated: 2024/10/01 15:25:59 by anpayot          ###   ########.fr       */
+/*   Created: 2024/10/01 16:20:23 by anpayot           #+#    #+#             */
+/*   Updated: 2024/10/01 16:21:14 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
-
 int	ft_isalnum(int c)
 {
-	return ((c >= '0' && c <= '9')
-		|| (c >= 'a' && c <= 'z')
-		|| (c >= 'A' && c <= 'Z'))
+	if (ft_ilalpha(c) || ft_isdigit(c))
+	{
 		return (1);
+	}
 	return (0);
 }
