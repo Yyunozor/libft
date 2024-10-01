@@ -1,18 +1,21 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_isalpha.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/17 19:32:13 by anpayot           #+#    #+#             */
-/*   Updated: 2024/09/24 23:03:45 by anpayot          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+#include <stdio.h>
 
-int	ft_isalpha(int c)
+int ft_isalpha(int c)
 {
-	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
-		return (1);
-	return (0);
+	return ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'));
+}
+
+int main(void)
+{
+	char *str = "Hello, World!";
+
+	while (*str)
+	{
+		if (ft_isalpha(*str))
+			printf("Character '%c' is an alphabetic character.\n", *str);
+		else
+			printf("Character '%c' is not an alphabetic character.\n", *str);
+		str++;
+	}
+	return 0;
 }
