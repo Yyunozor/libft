@@ -3,12 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: anpayot <anpayot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 00:26:41 by anpayot           #+#    #+#             */
-/*   Updated: 2024/10/02 00:51:18 by anpayot          ###   ########.fr       */
+/*   Updated: 2024/10/02 12:20:01 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 void	ft_bzero(void *s, size_t n)
 {

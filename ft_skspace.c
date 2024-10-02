@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_skspace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: anpayot <anpayot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 17:05:40 by anpayot           #+#    #+#             */
-/*   Updated: 2024/10/02 01:29:24 by anpayot          ###   ########.fr       */
+/*   Updated: 2024/10/02 12:57:26 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
+#include "libft.h"
 
 int	ft_skspace(const char *str)
 {
