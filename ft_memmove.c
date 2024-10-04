@@ -6,7 +6,7 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 22:29:28 by anpayot           #+#    #+#             */
-/*   Updated: 2024/10/04 22:36:45 by anpayot          ###   ########.fr       */
+/*   Updated: 2024/10/04 22:38:07 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 	{
 		d += len;
 		s += len;
-		while (len--)		git pull --no-rebase origin main		git pull --no-rebase origin main		git push origin main		git push origin main		git push origin main		git push origin main		git push origin main
+		while (len--)
 			*(--d) = *(--s);
 	}
 	else
