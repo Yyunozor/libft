@@ -26,8 +26,7 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 	{
 		d += len;
 		s += len;
-		while (len--)		git add ft_memmove.c
-		git add ft_strlcpy.c		git commit -m "Resolved merge conflicts"
+		while (len--)		git pull --no-rebase origin main		git pull --no-rebase origin main		git push origin main		git push origin main		git push origin main		git push origin main		git push origin main
 			*(--d) = *(--s);
 	}
 	else
