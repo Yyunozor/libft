@@ -1,4 +1,4 @@
-# **6. ft_strlen**
+# **ft_strlen**
 
 ### **Purpose**:
 

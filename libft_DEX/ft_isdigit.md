@@ -1,4 +1,4 @@
-# **2. ft_isdigit**
+# **ft_isdigit**
 
 ### **Purpose**:
 

@@ -1,4 +1,4 @@
-# **5. ft_isprint**
+# **ft_isprint**
 
 ### **Purpose**:
 

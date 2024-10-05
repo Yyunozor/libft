@@ -1,4 +1,4 @@
-# **4. ft_isascii**
+# **ft_isascii**
 
 ### **Purpose**:
 

@@ -1,4 +1,4 @@
-# **3. ft_isalnum**
+# **ft_isalnum**
 
 ### **Purpose**:
 

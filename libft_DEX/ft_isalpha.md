@@ -1,4 +1,4 @@
-# **1. ft_isalpha**
+# **ft_isalpha**
 
 ### **Purpose**:
 
