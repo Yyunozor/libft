@@ -83,7 +83,7 @@ The function will compare the first 5 bytes, and at index `4`, it will find tha
 Memory 1:    [ H | e | l | l | o ]
 Memory 2:    [ H | e | l | l | X ]
 Index:       [ 0 | 1 | 2 | 3 | 4 ]
-                              ^
+                               ^
                   Difference found at index 4
 
 ```
