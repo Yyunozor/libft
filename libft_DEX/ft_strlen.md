@@ -65,7 +65,7 @@ We iterate over the string, counting each character until we reach the null-term
 
 The function terminates at the null-terminator and returns the **length 12**.
 
-### **Visual Representation with Arrows**
+### **Visual Representation**
 
 ```jsx
 String: [ H | e | l | l | o |   | W | o | r | l | d | ! ]
@@ -75,5 +75,4 @@ Index : [ 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10| 11]
 
 ```
 
----
 ---

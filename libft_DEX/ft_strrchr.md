@@ -70,7 +70,7 @@ We start at index `0` and iterate over the string:
 
 After looping through the string, the **last occurrence** of `'o'` was at **Index 7**.
 
-### Visual Representation with Arrows
+### Visual Representation
 
 Here’s a visual representation showing both the **first** and **last occurrence** of `'o'`:
 
@@ -87,3 +87,5 @@ Index :  [ 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10| 11]
 ### **Explanation of the Final Result**:
 
 - **What the function returns**: The function will return a pointer (or address) to the last `'o'` in the string, which is located at **index 7**.
+
+---
