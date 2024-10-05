@@ -70,8 +70,6 @@ We are extracting the substring `"World"` from the string `"Hello World!"`, s
 Here’s the layout before the function runs:
 
 ```jsx
-jsx
-Copy code
 Source:      [ H | e | l | l | o |   | W | o | r | l | d | !  ]
 Index:       [ 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10| 11 ]
                                        ^

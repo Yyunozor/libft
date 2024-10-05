@@ -9,8 +9,6 @@ The `ft_strrchr` function locates the last occurrence of the character `c` i
 ### **Prototype**:
 
 ```c
-c
-Copy code
 char *ft_strrchr(const char *s, int c);
 
 ```
@@ -25,8 +23,6 @@ char *ft_strrchr(const char *s, int c);
 ### **Code Implementation**:
 
 ```c
-c
-Copy code
 char	*ft_strrchr(const char *s, int c)
 {
 	const char	*last = NULL;
