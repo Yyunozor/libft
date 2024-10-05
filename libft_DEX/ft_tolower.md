@@ -30,5 +30,4 @@ int ft_tolower(int c)
 
 - If the input character `c` is an uppercase letter (between 'A' and 'Z'), it converts it to lowercase by adding 32 to its ASCII value.
 - If `c` is not an uppercase letter, it returns `c` unchanged.
-
 ---

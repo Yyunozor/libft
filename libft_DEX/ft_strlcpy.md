@@ -48,5 +48,4 @@ size_t ft_strlcpy(char *dst, const char *src, size_t dstsize)
 - The function first calculates the length of `src` to return at the end.
 - If `dstsize > 0`, it copies up to `dstsize - 1` characters from `src` to `dst` and ensures the result is null-terminated.
 - It returns the full length of `src` so the caller can detect truncation.
-
 ---

@@ -38,3 +38,4 @@ void *ft_memset(void *b, int c, size_t len)
 - We cast `b` to `unsigned char *` to work byte by byte.
 - The loop fills each byte of the memory block with the value `c` until `len` bytes are set.
 - The function returns the original pointer `b`.
+---

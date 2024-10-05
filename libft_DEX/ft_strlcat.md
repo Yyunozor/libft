@@ -53,3 +53,4 @@ size_t ft_strlcat(char *dst, const char *src, size_t dstsize)
 - The function first calculates the lengths of `dst` and `src`.
 - If `dstsize == 0` or `dst` is already full, it returns the total length of the strings (`dstsize + src_len`).
 - Otherwise, it appends `src` to `dst`, ensuring that no more than `dstsize - 1` characters are written and null-terminating the result.
+---

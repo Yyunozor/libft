@@ -35,3 +35,4 @@ int ft_isalpha(int c)
 - The condition `(c >= 'A' && c <= 'Z')` checks if `c` is between 'A' and 'Z'.
 - The condition `(c >= 'a' && c <= 'z')` checks if `c` is between 'a' and 'z'.
 - If either condition is true, it returns `1`; otherwise, it returns `0`.
+---

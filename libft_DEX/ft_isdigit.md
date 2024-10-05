@@ -34,3 +34,4 @@ int ft_isdigit(int c)
 
 - The condition `(c >= '0' && c <= '9')` checks if the character falls within the ASCII range for digits.
 - If `c` is a digit, it returns `1`, otherwise `0`.
+---

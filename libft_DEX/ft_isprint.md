@@ -34,3 +34,4 @@ int ft_isprint(int c)
 
 - It checks if `c` is within the range of printable ASCII characters.
 - If true, the function returns `1`, otherwise `0`.
+---

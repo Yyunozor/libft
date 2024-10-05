@@ -34,3 +34,4 @@ int ft_isalnum(int c)
 
 - If either `ft_isalpha(c)` or `ft_isdigit(c)` returns `1` (true), the function will return `1`.
 - If neither returns true, it returns `0`.
+---

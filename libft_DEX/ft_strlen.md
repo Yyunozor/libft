@@ -37,3 +37,4 @@ size_t ft_strlen(const char *s)
 
 - The function loops through the string until it reaches the null-terminator.
 - It counts each character and returns the total count.
+---

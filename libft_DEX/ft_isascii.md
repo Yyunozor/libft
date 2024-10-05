@@ -34,3 +34,4 @@ int ft_isascii(int c)
 
 - The condition checks if `c` is within the ASCII character set (0 through 127).
 - If true, it returns `1`; otherwise, it returns `0`.
+---

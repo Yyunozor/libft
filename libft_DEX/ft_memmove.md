@@ -61,3 +61,4 @@ void *ft_memmove(void *dst, const void *src, size_t len)
 - **`ft_bzero`**: Sets a block of memory to zero.
 - **`ft_memcpy`**: Copies memory from one area to another but does not handle overlapping memory.
 - **`ft_memmove`**: Copies memory from one area to another and handles overlapping memory safely.
+---

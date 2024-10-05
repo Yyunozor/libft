@@ -30,3 +30,4 @@ int ft_toupper(int c)
 
 - If the input character `c` is a lowercase letter (between 'a' and 'z'), it converts it to uppercase by subtracting 32 from its ASCII value.
 - If `c` is not a lowercase letter, it returns `c` unchanged.
+---

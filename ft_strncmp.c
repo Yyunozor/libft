@@ -5,27 +5,23 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/17 18:58:17 by anpayot           #+#    #+#             */
-/*   Updated: 2024/10/03 14:08:14 by anpayot          ###   ########.fr       */
+/*   Created: 2024/10/05 18:03:37 by anpayot           #+#    #+#             */
+/*   Updated: 2024/10/05 18:03:54 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+const char	*ft_strrchr(const char *s, int c)
 {
-	size_t	i;
+	const char	*last = NULL;
 
-	if (!s1 || !s2)
-		return (-1);
-	i = 0;
-	while (i < n && s1[i] && s2[i])
+	while (*s)
 	{
-		if (s1[i] != s2[i])
-			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
-		i++;
+		if (*s == (char)c)
+			last = s;
+		s++;
 	}
-	if (i < n)
-		return ((unsigned char)s1[i] - (unsigned char)s2[i]);
-	return (0);
+	if (c == '\0')
+		return (s);
+
+	return (last);
 }

@@ -43,3 +43,4 @@ void *ft_memcpy(void *dst, const void *src, size_t n)
 - A check is done to return `NULL` if both `dst` and `src` are `NULL` (to prevent undefined behavior).
 - The loop copies `n` bytes from `src` to `dst` byte by byte.
 - The function returns `dst`.
+---
