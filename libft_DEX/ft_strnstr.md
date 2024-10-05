@@ -64,7 +64,7 @@ Let’s walk through an example where we are searching for the substring `"Worl
 Here’s the layout before the function runs:
 
 ```jsx
-Haystack:    [ H | e | l | l | o |   | W | o | r | l | d | ! ]
+Haystack:    [ H | e | l | l | o |   | W | o | r | l | d | !  ]
 Needle:      [ W | o | r | l | d ]
 Index:       [ 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10| 11 ]
 
@@ -77,11 +77,11 @@ Index:       [ 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10| 11 ]
 The function finds the substring `"World"` starting at index `6` within the bounds of `len`.
 
 ```jsx
-Haystack:    [ H | e | l | l | o |   | W | o | r | l | d | ! ]
+Haystack:    [ H | e | l | l | o |   | W | o | r | l | d | !  ]
 Needle:      [ W | o | r | l | d ]
 Index:       [ 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10| 11 ]
-                                  ^
-                       Substring found at index 6
+                                       ^
+                          Substring found at index 6
 
 ```
 
