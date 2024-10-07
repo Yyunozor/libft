@@ -61,7 +61,7 @@ We are searching for the **last** occurrence of the character `'o'` in the s
 Here’s the layout before the function runs:
 
 ```jsx
-String:      [ H | e | l | l | o |   | W | o | r | l | d | ! ]
+String:      [ H | e | l | l | o |   | W | o | r | l | d | !  ]
 Index:       [ 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10| 11 ]
 
 ```

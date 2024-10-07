@@ -79,9 +79,9 @@ Here’s the layout before the function runs:
 
 ```jsx
 Source:      [ W | o | r | l | d | ! | \0 ]
-Index:       [ 0 | 1 | 2 | 3 | 4 | 5 | 6 ]
+Index:       [ 0 | 1 | 2 | 3 | 4 | 5 | 6  ]
 
-Destination: [ H | e | l | l | o |   | ? | ? | ? | ? | ? | \0 ]
+Destination: [ H | e | l | l | o |   | ? | ? | ? | ? | ? | \0  ]
 Index:       [ 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 ]
 
 ```
@@ -94,9 +94,9 @@ The function will append characters from `src` to `dst` until `dstsize - 1`
 
 ```jsx
 Source:      [ W | o | r | l | d | ! | \0 ]
-Index:       [ 0 | 1 | 2 | 3 | 4 | 5 | 6 ]
+Index:       [ 0 | 1 | 2 | 3 | 4 | 5 | 6  ]
 
-Destination: [ H | e | l | l | o |   | W | o | r | l | d | \0 ]
+Destination: [ H | e | l | l | o |   | W | o | r | l | d | \0  ]
 Index:       [ 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 ]
                                                             ^
                                   Null-terminated after appending

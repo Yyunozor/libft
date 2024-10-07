@@ -61,7 +61,7 @@ We are searching for the byte `'o'` (ASCII 111) in the first 8 bytes of the me
 Here’s the layout before the function runs:
 
 ```jsx
-Memory:      [ H | e | l | l | o |   | W | o | r | l | d | ! ]
+Memory:      [ H | e | l | l | o |   | W | o | r | l | d | !  ]
 Index:       [ 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10| 11 ]
 
 ```
@@ -73,7 +73,7 @@ Index:       [ 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10| 11 ]
 The function will search through the first `8` bytes and return a pointer to the first occurrence of `'o'` at index `4`.
 
 ```jsx
-Memory:      [ H | e | l | l | o |   | W | o | r | l | d | ! ]
+Memory:      [ H | e | l | l | o |   | W | o | r | l | d | !  ]
 Index:       [ 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10| 11 ]
                                ^
                         Found 'o' at index 4
