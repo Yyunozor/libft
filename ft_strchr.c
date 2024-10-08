@@ -6,19 +6,24 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 10:19:07 by anpayot           #+#    #+#             */
-/*   Updated: 2024/10/08 14:13:18 by anpayot          ###   ########.fr       */
+/*   Updated: 2024/10/08 21:36:07 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
 char	*ft_strchr(const char *s, int c)
 {
+	unsigned char	uc;
+
+	uc = (unsigned char)c;
 	while (*s)
 	{
-		if (*s == c)
+		if (*s == uc)
 			return ((char *)s);
 		s++;
 	}
-	if (c == '\0')
+	if (uc == '\0')
 		return ((char *)s);
-	return (0);
+	return (NULL);
 }
