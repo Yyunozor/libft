@@ -6,7 +6,7 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 14:56:15 by anpayot           #+#    #+#             */
-/*   Updated: 2024/10/05 14:57:15 by anpayot          ###   ########.fr       */
+/*   Updated: 2024/10/08 14:12:46 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,4 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 	while (*src++)
 		;
 	return (src - src_start - 1);
-}
-
-#include <stdio.h>
-int	main(void)
-{
-	char	*src = "Hello, World!";
-	char	dst[20];
-	size_t	ret;
-
-	ret = ft_strlcpy(dst, src, 20);
-	printf("Return: %zu\n", ret);
-	printf("Destination: %s\n", dst);
-	return (0);
 }

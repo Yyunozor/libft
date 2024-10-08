@@ -6,13 +6,13 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 16:20:23 by anpayot           #+#    #+#             */
-/*   Updated: 2024/10/08 00:07:52 by anpayot          ###   ########.fr       */
+/*   Updated: 2024/10/08 14:03:06 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-short	ft_isalnum(short c)
+int	ft_isalnum(int c)
 {
 	return (ft_isalpha(c) || ft_isdigit(c));
 }

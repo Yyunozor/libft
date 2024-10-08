@@ -24,21 +24,23 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 ```c
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
-	size_t	needle_len;
+    size_t	needle_len;
 
-	if (!*needle)
-		return ((char *)haystack);
-	needle_len = ft_strlen(needle);
-	if (needle_len > len)  // If the needle is longer than the allowed search length
-		return (NULL);
-	while (*haystack && len >= needle_len)
-	{
-		if (*haystack == *needle && ft_strncmp(haystack, needle, needle_len) == 0)
-			return ((char *)haystack);
-		haystack++;
-		len--;  // Decrement the remaining search length
-	}
-	return (NULL);
+    if (!haystack || !needle)
+        return (NULL);
+    if (!*needle)
+        return ((char *)haystack);
+    needle_len = ft_strlen(needle);
+    if (needle_len > len)
+        return (NULL);
+    while (*haystack && len >= needle_len)
+    {
+        if (*haystack == *needle && ft_strncmp(haystack, needle, needle_len) == 0)
+            return ((char *)haystack);
+        haystack++;
+        len--;
+    }
+    return (NULL);
 }
 
 

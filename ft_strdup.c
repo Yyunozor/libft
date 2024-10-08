@@ -6,9 +6,11 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 10:19:10 by anpayot           #+#    #+#             */
-/*   Updated: 2024/10/08 13:57:35 by anpayot          ###   ########.fr       */
+/*   Updated: 2024/10/08 14:39:32 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 char	*ft_strdup(const char *s1)
 {

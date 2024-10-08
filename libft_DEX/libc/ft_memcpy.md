@@ -24,13 +24,17 @@ void *ft_memcpy(void *dst, const void *src, size_t n);
 ### **Code Implementation**:
 
 ```c
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+void	*ft_memcpy(void *restrict dst, const void *restrict src, size_t n)
 {
-	unsigned char	*d = (unsigned char *)dst;
-	const unsigned char	*s = (const unsigned char *)src;
+	unsigned char		*p_dest;
+	const unsigned char	*p_src;
 
+	if (!dst && !src && n == 0)
+		return (NULL);
+	p_dest = (unsigned char *)dst;
+	p_src = (const unsigned char *)src;
 	while (n--)
-		*d++ = *s++;
+		*p_dest++ = *p_src++;
 	return (dst);
 }
 

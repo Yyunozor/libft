@@ -6,7 +6,7 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 00:24:24 by anpayot           #+#    #+#             */
-/*   Updated: 2024/10/03 14:11:45 by anpayot          ###   ########.fr       */
+/*   Updated: 2024/10/08 14:50:13 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	copy_forward(unsigned char *d, const unsigned char *s, size_t len)
 {
-	size_t	*d_word;
+	size_t			*d_word;
 	const size_t	*s_word;
 
 	if ((size_t)d % sizeof(size_t) == (size_t)s % sizeof(size_t))
@@ -35,7 +35,7 @@ static void	copy_forward(unsigned char *d, const unsigned char *s, size_t len)
 
 static void	copy_backward(unsigned char *d, const unsigned char *s, size_t len)
 {
-	size_t	*d_word;
+	size_t			*d_word;
 	const size_t	*s_word;
 
 	if ((size_t)d % sizeof(size_t) == (size_t)s % sizeof(size_t))

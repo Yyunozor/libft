@@ -6,11 +6,11 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 10:19:07 by anpayot           #+#    #+#             */
-/*   Updated: 2024/10/08 12:22:10 by anpayot          ###   ########.fr       */
+/*   Updated: 2024/10/08 14:13:18 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*strchr(const char *s, int c)
+char	*ft_strchr(const char *s, int c)
 {
 	while (*s)
 	{

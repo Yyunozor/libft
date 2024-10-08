@@ -6,9 +6,11 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 18:33:22 by anpayot           #+#    #+#             */
-/*   Updated: 2024/10/03 14:08:12 by anpayot          ###   ########.fr       */
+/*   Updated: 2024/10/08 14:04:19 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 size_t	ft_strlen(const char *s)
 {

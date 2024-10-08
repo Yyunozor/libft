@@ -6,22 +6,20 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 18:03:37 by anpayot           #+#    #+#             */
-/*   Updated: 2024/10/05 18:21:36 by anpayot          ###   ########.fr       */
+/*   Updated: 2024/10/08 14:07:06 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-const char	*ft_strrchr(const char *s, int c)
+#include "libft.h"
+
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	const char	*last = NULL;
-
-	while (*s)
+	while (n-- && (*s1 || *s2))
 	{
-		if (*s == (char)c)
-			last = s;
-		s++;
+		if (*s1 != *s2)
+			return ((unsigned char)*s1 - (unsigned char)*s2);
+		s1++;
+		s2++;
 	}
-	if (c == '\0')
-		return (s);
-
-	return (last);
+	return (0);
 }
