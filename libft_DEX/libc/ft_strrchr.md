@@ -33,9 +33,10 @@ char	*ft_strrchr(const char *s, int c)
 			last = s;
 		s++;
 	}
-	if (*s == (char)c)
-		return (char *)s;
-	return (char *)last;
+	if ((char)c == '\0')
+		return ((char *)s);
+
+	return ((char *)last);
 }
 
 ```

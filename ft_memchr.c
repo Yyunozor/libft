@@ -6,7 +6,11 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 10:19:02 by anpayot           #+#    #+#             */
-/*   Updated: 2024/10/08 10:19:03 by anpayot          ###   ########.fr       */
+/*   Updated: 2024/10/08 12:39:02 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+void    *ft_memchr(const void *s, int c, size_t n)
+{
+    
+}
