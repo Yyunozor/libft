@@ -6,22 +6,22 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 10:19:16 by anpayot           #+#    #+#             */
-/*   Updated: 2024/10/08 12:23:00 by anpayot          ###   ########.fr       */
+/*   Updated: 2024/10/08 12:39:42 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char *strrchr(const char *s, int c)
+char	*ft_strrchr(const char *s, int c)
 {
-    int i;
+	const char	*last = NULL;
 
-    i = 0;
-    while (s[i])
-        i++;
-    while (i >= 0)
-    {
-        if (s[i] == c)
-            return ((char *)&s[i]);
-        i--;
-    }
-    return (0);
+	while (*s)
+	{
+		if (*s == (char)c)
+			last = s;
+		s++;
+	}
+	if ((char)c == '\0')
+		return ((char *)s);
+
+	return ((char *)last);
 }
