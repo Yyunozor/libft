@@ -6,7 +6,19 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 10:19:07 by anpayot           #+#    #+#             */
-/*   Updated: 2024/10/08 10:19:08 by anpayot          ###   ########.fr       */
+/*   Updated: 2024/10/08 12:22:10 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+char	*strchr(const char *s, int c)
+{
+	while (*s)
+	{
+		if (*s == c)
+			return ((char *)s);
+		s++;
+	}
+	if (c == '\0')
+		return ((char *)s);
+	return (0);
+}
