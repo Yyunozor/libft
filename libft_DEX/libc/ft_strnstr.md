@@ -1,114 +1,108 @@
-# **ft_strnstr**
+# **ft_substr**
+
+---
 
 ### **Purpose**:
 
-The `ft_strnstr` function locates the **first occurrence** of the null-terminated string `needle` within the string `haystack`, searching up to `len` characters in `haystack`.
+The `ft_substr` function extracts a substring from a given string, starting at a specified position and up to a given length.
 
 ### **Prototype**:
 
 ```c
-char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
 
 ```
 
-- **Input**:
-    - `haystack`: The string to search in.
-    - `needle`: The substring to search for.
-    - `len`: The maximum number of characters to search.
-- **Output**: Returns a pointer to the first occurrence of `needle` in `haystack`, or `NULL` if `needle` is not found within the first `len` characters.
+### **Input**:
+
+- `s`: The source string.
+- `start`: The starting position of the substring.
+- `len`: The maximum length of the substring.
+
+### **Output**:
+
+- Returns a pointer to the newly allocated substring.
+- Returns `NULL` if memory allocation fails.
 
 ---
 
 ### **Code Implementation**:
 
 ```c
-char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	size_t	needle_len;
+	char	*substr;
+	size_t	s_len;
+	char	*orig_substr;
 
-	if (*needle == 0 || haystack == needle)
-		return ((char *)haystack);
-	needle_len = ft_strlen(needle);
-	while (*haystack && needle_len <= len--)
-	{
-		if (!(ft_strncmp((char *)haystack, (char *)needle, needle_len)))
-			return ((char *)haystack);
-		haystack++;
-	}
-	return (NULL);
+	if (!s)
+		return (NULL);
+	s_len = ft_strlen(s);
+	if (start >= s_len)
+		return (ft_strdup(""));
+	if (len > s_len - start)
+		len = s_len - start;
+	substr = (char *)malloc(sizeof(char) * (len + 1));
+	if (!substr)
+		return (NULL);
+	orig_substr = substr;
+	while (len--)
+		*substr++ = s[start++];
+	*substr = '\0';
+	return (orig_substr);
 }
-
 
 ```
 
----
-
 ### **Explanation**:
 
-- The function searches for the substring `needle` within the first `len` characters of `haystack`.
-- If `needle` is found, the function returns a pointer to the first occurrence within `haystack`.
-- If `needle` is an empty string, the function returns `haystack`.
-- If `needle` is not found within the first `len` characters, the function returns `NULL`.
+- The function extracts a substring from the string `s` starting at the `start` position and up to `len` characters.
+- If `start` is beyond the length of the original string, the function returns an empty string.
+- If the length `len` exceeds the remaining length from the `start` position, it is adjusted to the remaining length.
+- Memory is allocated for the substring, including space for the null-terminator. If allocation fails, the function returns `NULL`.
+- The copying of characters is performed using pointer arithmetic for efficiency.
 
 ---
 
 ### **Visual Focus**
 
-Let’s walk through an example where we are searching for the substring `"World"` in the string `"Hello World!"`, with a maximum search length of `12`.
-
-### **Before `ft_strnstr` Execution**
-
-- **String (`haystack`)**: `"Hello World!"`
-- **Substring (`needle`)**: `"World"`
-- **Max search length (`len`)**: `12`
-
-Here’s the layout before the function runs:
+We are extracting the substring `"World"` from the string `"Hello World!"`, starting at index `6` and with a maximum length of `5`.
 
 ```jsx
-Haystack:    [ H | e | l | l | o |   | W | o | r | l | d | !  ]
-Needle:      [ W | o | r | l | d ]
-Index:       [ 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10| 11 ]
-
-```
-
----
-
-### **After `ft_strnstr` Execution**
-
-The function finds the substring `"World"` starting at index `6` within the bounds of `len`.
-
-```jsx
-Haystack:    [ H | e | l | l | o |   | W | o | r | l | d | !  ]
-Needle:      [ W | o | r | l | d ]
+Source:      [ H | e | l | l | o |   | W | o | r | l | d | !  ]
 Index:       [ 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10| 11 ]
                                        ^
-                          Substring found at index 6
+                                  Start at index 6
 
 ```
 
----
+### **After `ft_substr` Execution**
 
-### **Step-by-Step Breakdown**:
+The function extracts the substring `"World"`.
 
-1. **Step 1**: Compare `haystack[0]` to `haystack[6]` with `needle` (no match).
-2. **Step 2**: Slide over to `haystack[6]` and compare with `needle`.
-3. **Step 3**: **Match found** at `haystack[6]`, so the function returns a pointer to `haystack[6]`.
+```jsx
+Source:      [ H | e | l | l | o |   | W | o | r | l | d | !  ]
+Substring:   [ W | o | r | l | d | \0 ]
+Index:       [ 0 | 1 | 2 | 3 | 4 | 5  ]
+
+```
 
 ---
 
 ### **Final State**:
 
-- The function returns a pointer to the substring `"World"` starting at index `6` in `haystack`.
-- If no match were found, or if `needle` were longer than the remaining `len` characters, it would return `NULL`.
+- The function successfully extracts the substring `"World"` from the original string.
+- The resulting string is a newly allocated memory block containing the substring, and it is null-terminated.
 
 ---
 
-### **Conclusion**
+### **Conclusion**:
 
-This optimized version of `ft_strnstr`:
+This optimized version of `ft_substr`:
 
-- **Efficiently searches** for a substring within a limited length.
-- **Returns a pointer** to the substring or `NULL` if not found.
-- Ensures safe searching within a limited number of characters, making it ideal for partial string searches.
+- **Efficiently extracts substrings** by handling out-of-bound start positions.
+- **Adjusts the length** based on the available remaining characters.
+- **Uses pointer arithmetic** for optimal copying.
+- **Ensures the result is properly null-terminated** and dynamically allocated.
 
 ---
