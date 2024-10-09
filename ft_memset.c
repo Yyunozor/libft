@@ -6,18 +6,20 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 23:53:28 by anpayot           #+#    #+#             */
-/*   Updated: 2024/10/08 14:05:01 by anpayot          ###   ########.fr       */
+/*   Updated: 2024/10/09 15:31:06 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
+#include "libft.h"
 
-void	*ft_memset(void *b, int c, size_t len)
+void	*ft_memset(void *s, int c, size_t n)
 {
 	unsigned char	*ptr;
+	unsigned char	byte;
 
-	ptr = (unsigned char *)b;
-	while (len--)
-		*ptr++ = (unsigned char)c;
-	return (b);
+	ptr = (unsigned char *)s;
+	byte = (unsigned char)c;
+	while (n--)
+		*ptr++ = byte;
+	return (s);
 }
