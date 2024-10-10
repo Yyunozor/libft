@@ -6,7 +6,7 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 22:46:03 by anpayot           #+#    #+#             */
-/*   Updated: 2024/10/08 00:07:19 by anpayot          ###   ########.fr       */
+/*   Updated: 2024/10/10 15:36:35 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,11 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
 	size_t	dst_len;
 	size_t	src_len;
-	size_t	i;
 
 	dst_len = ft_strlen(dst);
 	src_len = ft_strlen(src);
 	if (size <= dst_len)
 		return (size + src_len);
-	i = 0;
-	while (dst_len + i < size - 1 && src[i])
-	{
-		dst[dst_len + i] = src[i];
-		i++;
-	}
-	dst[dst_len + i] = '\0';
+	ft_strlcpy(dst + dst_len, src, size - dst_len);
 	return (dst_len + src_len);
 }

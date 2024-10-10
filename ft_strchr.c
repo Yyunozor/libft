@@ -6,12 +6,18 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 10:19:07 by anpayot           #+#    #+#             */
-/*   Updated: 2024/10/08 21:36:07 by anpayot          ###   ########.fr       */
+/*   Updated: 2024/10/10 17:15:31 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+char	*ft_strchr(const char *s, int c)
+{
+	return ((char *)ft_memchr(s, c, ft_strlen(s) + 1));
+}
+
+/*
 char	*ft_strchr(const char *s, int c)
 {
 	unsigned char	uc;
@@ -27,3 +33,4 @@ char	*ft_strchr(const char *s, int c)
 		return ((char *)s);
 	return (NULL);
 }
+*/

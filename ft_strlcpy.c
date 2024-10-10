@@ -6,7 +6,7 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 14:56:15 by anpayot           #+#    #+#             */
-/*   Updated: 2024/10/08 14:12:46 by anpayot          ###   ########.fr       */
+/*   Updated: 2024/10/10 15:21:47 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,7 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 	if (dstsize)
 	{
 		while (*src && dstsize-- > 1)
-		{
 			*dst++ = *src++;
-		}
 		*dst = '\0';
 	}
 	while (*src++)

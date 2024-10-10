@@ -1,32 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/09 13:41:55 by anpayot           #+#    #+#             */
-/*   Updated: 2024/10/10 16:55:20 by anpayot          ###   ########.fr       */
+/*   Created: 2024/10/10 17:05:26 by anpayot           #+#    #+#             */
+/*   Updated: 2024/10/10 17:14:56 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+har	*ft_strjoin(char const *s1, char const *s2)
 {
-	char	*substr;
-	size_t	s_len;
+	char	*joined_str;
+	size_t	s1_len;
+	size_t	s2_len;
+	size_t	i;
 
-	if (!s)
+	if (!s1 || !s2)
 		return (NULL);
-	s_len = ft_strlen(s);
-	if (start >= s_len)
-		return (ft_strdup(""));
-	if (len > s_len - start)
-		len = s_len - start;
-	substr = (char *)malloc(sizeof(char) * (len + 1));
-	if (!substr)
+	s1_len = ft_strlen(s1);
+	s2_len = ft_strlen(s2);
+	joined_str = (char *)malloc(sizeof(char) * (s1_len + s2_len + 1));
+	if (!joined_str)
 		return (NULL);
-	ft_strlcpy(substr, s + start, len + 1);
-	return (substr);
-}
+	i = 0;
+	while (*s1)
+		joined_str[i++] = *s1++;
+	while (*s2)
+		joined_str[i++] = *s2++;
+	joined_str[i] = '\0';
+	return (joined_str);
+}c
