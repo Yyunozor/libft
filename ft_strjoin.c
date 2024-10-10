@@ -6,13 +6,13 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 17:05:26 by anpayot           #+#    #+#             */
-/*   Updated: 2024/10/10 17:14:56 by anpayot          ###   ########.fr       */
+/*   Updated: 2024/10/10 17:26:51 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-har	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*joined_str;
 	size_t	s1_len;
@@ -33,4 +33,4 @@ har	*ft_strjoin(char const *s1, char const *s2)
 		joined_str[i++] = *s2++;
 	joined_str[i] = '\0';
 	return (joined_str);
-}c
+}
