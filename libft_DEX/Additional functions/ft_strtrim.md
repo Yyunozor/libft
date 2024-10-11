@@ -70,7 +70,7 @@ Let’s use the string `" Hello World! "` and the character set `" "` (space) to
 
 ### **Before Trimming**:
 
-```c
+```mathematica
 Input String: "  Hello World!  "
 Trim Set:     " "
 
@@ -78,7 +78,7 @@ Trim Set:     " "
 
 ### **After Trimming**:
 
-```c
+```arduino
 Trimmed String: "Hello World!"
 
 ```
@@ -87,3 +87,11 @@ Trimmed String: "Hello World!"
 - **End Index Calculation**: The last non-space character is `'!'` at index `12`.
 
 ### Visual Representation:
+
+```jsx
+
+Original:     [ | | H | e | l | l | o |   | W | o | r | l  | d  | !  |    |    ]
+Trim Set:     [ space characters: " " ]
+Indexes:      [ 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 ]
+Trimmed:      [ H | e | l | l | o |   | W | o | r | l | d  | !  ]
+```
