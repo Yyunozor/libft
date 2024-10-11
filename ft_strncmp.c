@@ -6,18 +6,12 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 18:03:37 by anpayot           #+#    #+#             */
-/*   Updated: 2024/10/10 16:00:39 by anpayot          ###   ########.fr       */
+/*   Updated: 2024/10/11 14:16:04 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
-{
-	return (ft_memcmp(s1, s2, n));
-}
-
-/*
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
 	while (n-- && (*s1 || *s2))
@@ -29,4 +23,3 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	}
 	return (0);
 }
-*/
