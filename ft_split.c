@@ -6,7 +6,7 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 18:24:43 by anpayot           #+#    #+#             */
-/*   Updated: 2024/10/16 18:38:17 by anpayot          ###   ########.fr       */
+/*   Updated: 2024/10/16 18:46:55 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ char	**ft_split(char const *s, char c)
 	*ptr = NULL;
 	return (res);
 }
-
 /*
 #include <assert.h>
 #include <string.h>
@@ -140,8 +139,6 @@ int main()
 	return 0;
 }
 */
-
-
 /*
 static void	free_all(char **arr, size_t i)
 {
