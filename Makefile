@@ -161,4 +161,4 @@ chef:
 	@echo "⠀⠀⠀⢠⡾⠃⠀⢠⣶⣶⣶⣴⣾⣿⠀⠈⢿⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣸⣇⠀⠀⠛⠋⠀⠀⢾⣿⡿⣿⡆⠘⣷⡀⠀⠀⠀⠀"
 	@echo "⠀⠀⣴⠟⠀⠀⠀⣾⣇⠀⠀⠈⠉⠛⠀⠀⠈⣿⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⣾⡿⠿⠛⠛⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⡇⠀⢹⣷⠀⠀⠀⠀"
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re capuche lama chef
