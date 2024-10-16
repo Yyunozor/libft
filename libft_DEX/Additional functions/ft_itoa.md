@@ -11,8 +11,6 @@ The `ft_itoa` function converts an integer to its string representation. It co
 ### **Prototype**:
 
 ```c
-c
-Copy code
 char *ft_itoa(int n);
 
 ```
