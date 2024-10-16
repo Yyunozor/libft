@@ -6,9 +6,11 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 18:06:04 by anpayot           #+#    #+#             */
-/*   Updated: 2024/10/16 18:46:18 by anpayot          ###   ########.fr       */
+/*   Updated: 2024/10/16 19:32:07 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
