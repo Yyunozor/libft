@@ -4,7 +4,7 @@
 
 ### **Purpose**:
 
-The `ft_putnbr_fd` function outputs an integer to a specified file descriptor. It supports both positive and negative numbers, printing them in textual format.
+The `ft_putnbr_fd` function outputs an integer to a specified file descriptor. It handles both positive and negative numbers correctly, printing each digit in the correct order.
 
 ---
 
@@ -16,12 +16,12 @@ void ft_putnbr_fd(int n, int fd);
 ```
 
 - **Parameters**:
-    - `n`: The integer to output.
-    - `fd`: The file descriptor where the integer will be written:
-        - Common values include:
+    - `n`: The integer to be output.
+    - `fd`: The file descriptor where the output is written:
+        - Common values:
             - `1`: Standard output (`stdout`)
             - `2`: Standard error (`stderr`)
-        - Can also be a file descriptor obtained from opening a file.
+        - Custom file descriptors for writing to files or other destinations.
 - **Return Value**:
     - This function does not return a value.
 
@@ -30,21 +30,23 @@ void ft_putnbr_fd(int n, int fd);
 ### **Code Implementation**:
 
 ```c
-static void	ft_putnbr_rec(int n, int fd)
-{
-	char	c;
-
-	if (n >= 10 || n <= -10)
-		ft_putnbr_rec(n / 10, fd);
-	c = (n < 0 ? -(n % 10) : n % 10) + '0';
-	write(fd, &c, 1);
-}
-
 void	ft_putnbr_fd(int n, int fd)
 {
+	if (n == -2147483648)
+	{
+		ft_putstr_fd("-2147483648", fd);
+		return;
+	}
 	if (n < 0)
-		write(fd, "-", 1);
-	ft_putnbr_rec(n, fd);
+	{
+		ft_putchar_fd('-', fd);
+		n = -n;
+	}
+	if (n >= 10)
+	{
+		ft_putnbr_fd(n / 10, fd);
+	}
+	ft_putchar_fd((n % 10) + '0', fd);
 }
 
 ```
@@ -53,122 +55,89 @@ void	ft_putnbr_fd(int n, int fd)
 
 ### **Explanation**:
 
-1. **Recursive Output**:
-    - The function uses a recursive helper function, `ft_putnbr_rec`, to handle the conversion of each digit to a character.
-    - The recursion continues until all digits are processed, printing each character from the most significant to the least significant digit.
+1. **Special Case Handling for Minimum Integer Value**:
+    - If `n` equals `2147483648`, the function directly outputs the string "-2147483648" using `ft_putstr_fd`, since converting this value to positive exceeds the range of a standard `int` type.
 2. **Handling Negative Numbers**:
-    - If the input integer is negative, the function writes a `'-'` character before processing the absolute value.
-3. **Use Cases**:
-    - Printing numerical values in console-based applications.
-    - Logging integer values to a file or error output for debugging purposes.
-
----
-
-### **Edge Cases Handled**:
-
-1. **Integer Overflow and Minimum Value**:
-    - The function correctly handles the edge case of the minimum integer value (`2147483648`) by converting each digit separately.
-2. **Zero Value**:
-    - If the input integer is `0`, the function correctly outputs `'0'`.
+    - If `n` is negative and not equal to `2147483648`, the function writes a '-' sign to `fd` and converts `n` to its positive equivalent.
+3. **Recursion for Multi-Digit Numbers**:
+    - The function recursively calls itself with `n / 10` to handle the preceding digits.
+    - The last digit is printed by calculating `n % 10` and converting it to a character.
+4. **Single-Digit Case**:
+    - For numbers less than 10 (and non-negative), the function directly converts the digit to a character and writes it to the file descriptor.
 
 ---
 
 ### **Visual Focus**:
 
-1. **Example 1**: Printing a Positive Number
+1. **Example 1**: Writing a Positive Number to Standard Output
     
     ```c
     ft_putnbr_fd(12345, 1); // Outputs "12345" to stdout
     
     ```
     
-2. **Example 2**: Printing a Negative Number
+2. **Example 2**: Writing a Negative Number to Standard Error
     
     ```c
-    ft_putnbr_fd(-98765, 2); // Outputs "-98765" to stderr
+    ft_putnbr_fd(-6789, 2); // Outputs "-6789" to stderr
     
     ```
     
-3. **Example 3**: Writing to a File
+3. **Example 3**: Writing Zero
     
     ```c
-    int fd = open("number_log.txt", O_WRONLY | O_CREAT | O_APPEND, 0644);
-    if (fd != -1)
-    {
-        ft_putnbr_fd(42, fd); // Writes "42" to "number_log.txt"
-        close(fd);
-    }
+    ft_putnbr_fd(0, 1); // Outputs "0" to stdout
     
     ```
     
+
+---
+
+### **Edge Cases Handled**:
+
+1. **Handling the Minimum Integer Value (`2147483648`)**:
+    - This is directly managed to avoid overflow issues when trying to negate the value.
+2. **Handling Zero**:
+    - When `n` is zero, the function correctly outputs '0'.
+3. **Negative Numbers**:
+    - For negative values other than `2147483648`, a '-' sign is output first, followed by the absolute value of the number.
 
 ---
 
 ### **Complexity Analysis**:
 
-- **Time Complexity**: O(log(n)), where `n` is the absolute value of the integer. The function performs one write operation per digit.
-- **Space Complexity**: O(1), as no additional memory is allocated besides stack space for recursion.
-
----
-
-### **Edge Case Handling**:
-
-1. **Handling Zero**:
-    - If the input integer is zero, the function outputs `'0'`.
-2. **Minimum Integer Value (`INT_MIN`)**:
-    - The function correctly handles `INT_MIN` (`2147483648`) by converting the digits one by one.
-3. **Writing to an Invalid File Descriptor**:
-    - If the file descriptor is invalid, the `write` function will fail silently, and the function will not produce any output.
+- **Time Complexity**: O(d), where `d` is the number of digits in `n`. The function will make one recursive call per digit.
+- **Space Complexity**: O(d) due to recursion depth.
 
 ---
 
 ### **Possible Improvements**:
 
-1. **Avoiding Recursion**:
-    - To avoid recursion, the function can be rewritten using iteration, which would prevent potential stack overflow issues with very large integers:
-    
-    ```c
-    void	ft_putnbr_fd(int n, int fd)
-    {
-        char	buffer[12];
-        int		i = 0;
-        long	nb = n;
-    
-        if (nb < 0)
-        {
-            buffer[i++] = '-';
-            nb = -nb;
-        }
-        if (nb == 0)
-            buffer[i++] = '0';
-        while (nb > 0)
-        {
-            buffer[i++] = (nb % 10) + '0';
-            nb /= 10;
-        }
-        for (int j = 0; j < i / 2; j++)
-        {
-            char temp = buffer[j];
-            buffer[j] = buffer[i - 1 - j];
-            buffer[i - 1 - j] = temp;
-        }
-        write(fd, buffer, i);
-    }
-    
-    ```
-    
-2. **Error Handling for `write`**:
-    - Add error checking for each `write` operation to improve robustness.
+1. **Iterative Approach**:
+    - Converting the function to an iterative approach could avoid the stack overhead of recursion.
+2. **Error Handling**:
+    - Currently, the function does not check if the file descriptor `fd` is valid. Additional error handling could be added to ensure robust output.
 
 ---
 
 ### **Common Questions**:
 
-1. **Why use recursion instead of iteration?**
-    - Recursion makes the code simpler and more readable. However, an iterative approach would avoid potential stack overflow issues.
-2. **Can the function handle long integers?**
-    - The function is designed to work with `int` type values. For `long` or `long long`, a separate function (e.g., `ft_putlong_fd`) would be needed.
-3. **Why doesn’t the function return an error code if writing fails?**
-    - It follows the convention of standard C library functions like `putchar` and `puts`, which do not provide error feedback. Adding error handling would change its behavior.
+1. **Why does the function use recursion for multi-digit numbers?**
+    - Recursion simplifies the logic of handling each digit from most significant to least significant.
+2. **What happens if the file descriptor is invalid?**
+    - The `write` function will fail, and no output will be produced. The function does not perform any checks for the validity of `fd`.
+
+---
+
+### **Buffered Output Consideration**:
+
+For frequent output operations, buffering the data could reduce the number of system calls and improve performance.
+
+---
+
+### **Additional Notes**:
+
+- **Handling UTF-8 Encoding**:
+    - The function works with single-byte characters (ASCII) for the digits and sign. If extended to handle different number bases or formatting, more considerations would be needed.
 
 ---
