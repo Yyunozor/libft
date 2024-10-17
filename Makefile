@@ -26,7 +26,8 @@ all: $(NAME)
 	@echo "| '--------------' || '--------------' || '--------------' || '--------------' || '--------------' |"
 	@echo " '----------------'  '----------------'  '----------------'  '----------------'  '----------------' "
 	@echo "=============================="
-	@echo "libft.a has been created successfully."
+	@echo "libft.a has been created successfully!"
+	@echo "Bravo! Well Done! Bien joué! すごい! إنه عمل جيد! но да, это ясно!"
 
 $(NAME): $(OBJ)
 	@ar rcs $(NAME) $(OBJ)
