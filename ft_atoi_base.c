@@ -6,11 +6,33 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 17:27:43 by anpayot           #+#    #+#             */
-/*   Updated: 2024/10/17 18:13:27 by anpayot          ###   ########.fr       */
+/*   Updated: 2024/10/17 18:48:45 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+static long	ft_handle_overflow(long result, int base_len, int digit, int sign)
+{
+	long	max_int;
+	long	min_int;
+
+	max_int = (long)INT_MAX;
+	min_int = (long)INT_MIN;
+	if (result > max_int / base_len
+		|| (result == max_int / base_len && digit > max_int % base_len))
+	{
+		if (sign == 1)
+		{
+			return (max_int);
+		}
+		else
+		{
+			return (min_int);
+		}
+	}
+	return (result);
+}
 
 int	ft_atoi_base(const char *str, const char *base)
 {

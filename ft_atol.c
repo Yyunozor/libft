@@ -1,35 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_handle_overflow.c                               :+:      :+:    :+:   */
+/*   ft_atol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/17 18:11:16 by anpayot           #+#    #+#             */
-/*   Updated: 2024/10/17 18:13:22 by anpayot          ###   ########.fr       */
+/*   Created: 2024/09/17 19:30:22 by anpayot           #+#    #+#             */
+/*   Updated: 2024/10/17 18:49:52 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-long	ft_handle_overflow(long result, int base_len, int digit, int sign)
+static long	handle_overflow(int sign)
 {
-	long	max_int;
-	long	min_int;
+	if (sign == 1)
+		return (LONG_MAX);
+	return (LONG_MIN);
+}
 
-	max_int = (long)INT_MAX;
-	min_int = (long)INT_MIN;
-	if (result > max_int / base_len
-		|| (result == max_int / base_len && digit > max_int % base_len))
+long	ft_atol(const char *str)
+{
+	long	result;
+	int		sign;
+
+	while (ft_isspace(*str))
+		str++;
+	sign = ft_get_sign(&str);
+	result = 0;
+	while (ft_isdigit(*str))
 	{
-		if (sign == 1)
-		{
-			return (max_int);
-		}
-		else
-		{
-			return (min_int);
-		}
+		if (result > (LONG_MAX - (*str - '0')) / 10)
+			return (handle_overflow(sign));
+		result = result * 10 + (*str - '0');
+		str++;
 	}
-	return (result);
+	return (result * sign);
 }

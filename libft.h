@@ -6,7 +6,7 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 14:08:22 by anpayot           #+#    #+#             */
-/*   Updated: 2024/10/17 18:35:11 by anpayot          ###   ########.fr       */
+/*   Updated: 2024/10/17 18:50:47 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,9 @@ size_t	ft_numlen(int n);
 size_t	ft_is_valid_base(const char *base, int *base_len);
 int		ft_atoi_base(const char *str, const char *base);
 int		ft_get_sign(const char **str);
-long	ft_handle_overflow(long result, int base_len, int digit, int sign);
 char	*ft_itoa_base(int value, const char *base);
 char	*ft_revstr(char *str, size_t len);
+long	ft_atol(const char *str);
 
 
 #endif
