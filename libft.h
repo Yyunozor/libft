@@ -6,7 +6,7 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 14:08:22 by anpayot           #+#    #+#             */
-/*   Updated: 2024/10/17 00:21:16 by anpayot          ###   ########.fr       */
+/*   Updated: 2024/10/17 18:35:11 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,16 @@ void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 
 int		ft_isspace(int c);
+int		ft_islower(int c);
+int		ft_isupper(int c);
+
+size_t	ft_numlen(int n);
+size_t	ft_is_valid_base(const char *base, int *base_len);
+int		ft_atoi_base(const char *str, const char *base);
+int		ft_get_sign(const char **str);
+long	ft_handle_overflow(long result, int base_len, int digit, int sign);
+char	*ft_itoa_base(int value, const char *base);
+char	*ft_revstr(char *str, size_t len);
+
 
 #endif

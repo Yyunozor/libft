@@ -1,40 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_is_valid_base.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/16 19:47:45 by anpayot           #+#    #+#             */
-/*   Updated: 2024/10/17 16:48:32 by anpayot          ###   ########.fr       */
+/*   Created: 2024/10/17 17:41:25 by anpayot           #+#    #+#             */
+/*   Updated: 2024/10/17 17:41:45 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_itoa(int n)
+size_t	ft_is_valid_base(const char *base, int *base_len)
 {
-	size_t	len;
-	long	nb;
-	char	*str;
+	const char	*ptr;
 
-	nb = n;
-	len = ft_numlen(n);
-	str = (char *)malloc(sizeof(char) * (len + 1));
-	if (!str)
-		return (NULL);
-	str[len] = '\0';
-	if (nb < 0)
+	*base_len = ft_strlen(base);
+	if (*base_len < 2)
+		return (0);
+	ptr = base;
+	while (*ptr)
 	{
-		str[0] = '-';
-		nb = -nb;
+		if (*ptr == '+' || *ptr == '-' || ft_isspace(*ptr))
+			return (0);
+		if (ft_strchr(ptr + 1, *ptr))
+			return (0);
+		ptr++;
 	}
-	if (nb == 0)
-		str[--len] = '0';
-	while (nb > 0)
-	{
-		str[--len] = (nb % 10) + '0';
-		nb /= 10;
-	}
-	return (str);
+	return (1);
 }

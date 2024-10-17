@@ -1,40 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_handle_overflow.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/16 19:47:45 by anpayot           #+#    #+#             */
-/*   Updated: 2024/10/17 16:48:32 by anpayot          ###   ########.fr       */
+/*   Created: 2024/10/17 18:11:16 by anpayot           #+#    #+#             */
+/*   Updated: 2024/10/17 18:13:22 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_itoa(int n)
+long	ft_handle_overflow(long result, int base_len, int digit, int sign)
 {
-	size_t	len;
-	long	nb;
-	char	*str;
+	long	max_int;
+	long	min_int;
 
-	nb = n;
-	len = ft_numlen(n);
-	str = (char *)malloc(sizeof(char) * (len + 1));
-	if (!str)
-		return (NULL);
-	str[len] = '\0';
-	if (nb < 0)
+	max_int = (long)INT_MAX;
+	min_int = (long)INT_MIN;
+	if (result > max_int / base_len
+		|| (result == max_int / base_len && digit > max_int % base_len))
 	{
-		str[0] = '-';
-		nb = -nb;
+		if (sign == 1)
+		{
+			return (max_int);
+		}
+		else
+		{
+			return (min_int);
+		}
 	}
-	if (nb == 0)
-		str[--len] = '0';
-	while (nb > 0)
-	{
-		str[--len] = (nb % 10) + '0';
-		nb /= 10;
-	}
-	return (str);
+	return (result);
 }

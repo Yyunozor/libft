@@ -1,40 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_revstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/16 19:47:45 by anpayot           #+#    #+#             */
-/*   Updated: 2024/10/17 16:48:32 by anpayot          ###   ########.fr       */
+/*   Created: 2024/10/17 18:34:57 by anpayot           #+#    #+#             */
+/*   Updated: 2024/10/17 18:38:21 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_itoa(int n)
+char	*ft_revstr(char *str, size_t len)
 {
-	size_t	len;
-	long	nb;
-	char	*str;
+	size_t	i;
+	char	tmp;
 
-	nb = n;
-	len = ft_numlen(n);
-	str = (char *)malloc(sizeof(char) * (len + 1));
-	if (!str)
-		return (NULL);
-	str[len] = '\0';
-	if (nb < 0)
+	i = 0;
+	while (i < len / 2)
 	{
-		str[0] = '-';
-		nb = -nb;
-	}
-	if (nb == 0)
-		str[--len] = '0';
-	while (nb > 0)
-	{
-		str[--len] = (nb % 10) + '0';
-		nb /= 10;
+		tmp = str[i];
+		str[i] = str[len - 1 - i];
+		str[len - 1 - i] = tmp;
+		i++;
 	}
 	return (str);
 }

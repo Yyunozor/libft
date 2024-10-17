@@ -1,40 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_get_sign.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/16 19:47:45 by anpayot           #+#    #+#             */
-/*   Updated: 2024/10/17 16:48:32 by anpayot          ###   ########.fr       */
+/*   Created: 2024/10/17 17:44:01 by anpayot           #+#    #+#             */
+/*   Updated: 2024/10/17 17:47:33 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_itoa(int n)
+int	ft_get_sign(const char **str)
 {
-	size_t	len;
-	long	nb;
-	char	*str;
+	int	sign;
 
-	nb = n;
-	len = ft_numlen(n);
-	str = (char *)malloc(sizeof(char) * (len + 1));
-	if (!str)
-		return (NULL);
-	str[len] = '\0';
-	if (nb < 0)
+	sign = 1;
+	while (ft_isspace(**str))
+		(*str)++;
+	if (**str == '-')
 	{
-		str[0] = '-';
-		nb = -nb;
+		sign = -1;
+		(*str)++;
 	}
-	if (nb == 0)
-		str[--len] = '0';
-	while (nb > 0)
-	{
-		str[--len] = (nb % 10) + '0';
-		nb /= 10;
-	}
-	return (str);
+	else if (**str == '+')
+		(*str)++;
+	return (sign);
 }
