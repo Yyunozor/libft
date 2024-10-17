@@ -13,7 +13,6 @@ OBJ = $(SRC:.c=.o)
 
 # Target to build the library
 all: $(NAME)
-	@echo "libft builded..."
 	@echo "__________________________________________________"
 	@echo "░  ░░░░░░░░        ░░       ░░░        ░░        ░"
 	@echo "▒  ▒▒▒▒▒▒▒▒▒▒▒  ▒▒▒▒▒  ▒▒▒▒  ▒▒  ▒▒▒▒▒▒▒▒▒▒▒  ▒▒▒▒"
@@ -38,9 +37,15 @@ $(NAME): $(OBJ)
 
 %.o: %.c
 	@$(CC) $(CFLAGS) -c $< -o $@
-	@echo "\033[1;30m🛠️ Compiling: \033[0m \033[1;37m$<\033[0m"
-	@echo "   \033[1;37m⚙️ Output: \033[0m \033[1;32m$@\033[0m \033[1;30m\t[.o]\033[0m\033[1;30m\t🔍checked.\033[0m"
+	@echo "\033[1;30m🛠️ Compiling: \033[0m \033[1;30m$<\033[0m"
+	@echo "   \033[1;37m⚙️ Output: \033[0m \033[1;37m$@\033[0m \033[1;30m\t[.o]\033[0m\033[1;30m\t🔍checked.\033[0m"
 	@echo "\033[1;37m──────────────────────────────────────────────────\033[0m"
+
+$(NAME): $(OBJ)
+	@ar rcs $(NAME) $(OBJ)
+	@echo "\033[1;37m📂 .o count:  $(words $(OBJ))\033[0m"
+	@echo " "
+	@echo "\033[1;37m✔️ ended                          ...libft builded!"
 
 clean:
 	@rm -f $(OBJ)
@@ -175,4 +180,4 @@ chef:
 
 tutti: 42 lama capuche chef 
 
-.PHONY: all clean fclean re capuche lama chef tutti 42
+.PHONY: all clean fclean re capuche lama chef tutti 
