@@ -167,4 +167,6 @@ chef:
 	@echo "     #+#   #+#           "
 	@echo "    ###  ##########      "
 
+tutti: 42 lama capuche chef 
+
 .PHONY: all clean fclean re capuche lama chef
