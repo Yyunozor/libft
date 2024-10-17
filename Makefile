@@ -1,7 +1,7 @@
 # Variables
 NAME = libft.a
 CFLAGS = -Wall -Wextra -Werror
-SRC = ft_numlen.c ft_get_sign.c ft_is_valbase.c ft_atoi_base.c ft_atol.c \
+SRC = ft_numlen.c ft_is_valbase.c ft_atoi_base.c ft_atol.c ft_revstr.c ft_itoa_base.c ft_atol.c \
 		ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c \
 		ft_strlen.c ft_memset.c ft_bzero.c ft_memcpy.c ft_memmove.c \
 		ft_strlcpy.c ft_strlcat.c ft_toupper.c ft_tolower.c ft_strchr.c \

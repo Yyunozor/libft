@@ -6,11 +6,28 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 17:27:43 by anpayot           #+#    #+#             */
-/*   Updated: 2024/10/17 18:55:51 by anpayot          ###   ########.fr       */
+/*   Updated: 2024/10/17 19:54:46 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+static int	ft_get_sign(const char **str)
+{
+	int	sign;
+
+	sign = 1;
+	while (ft_isspace(**str))
+		(*str)++;
+	if (**str == '-')
+	{
+		sign = -1;
+		(*str)++;
+	}
+	else if (**str == '+')
+		(*str)++;
+	return (sign);
+}
 
 static long	ft_handle_overflow(long result, int base_len, int digit, int sign)
 {
