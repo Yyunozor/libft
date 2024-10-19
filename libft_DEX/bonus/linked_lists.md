@@ -5,7 +5,7 @@
 A **linked list** is a collection of nodes, where each node holds two things:
 
 1. **Data**: The information you want to store.
-2. **A Reference to th Next Node**: A pointer linking the node to the next one in the list.
+2. **A Reference to the Next Node**: A pointer linking the node to the next one in the list.
 
 In contrast to arrays, linked lists don’t store elements in contiguous memory locations. Instead, each element points to the next one, forming a chain, or list. This dynamic nature allows flexible memory management and efficient insertion and deletion operations.
 
