@@ -1,33 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_revstr.c                                        :+:      :+:    :+:   */
+/*   ft_swap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/17 18:34:57 by anpayot           #+#    #+#             */
-/*   Updated: 2024/10/22 23:55:46 by anpayot          ###   ########.fr       */
+/*   Created: 2024/10/22 18:16:09 by anpayot           #+#    #+#             */
+/*   Updated: 2024/10/23 00:14:52 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_revstr(char *str, size_t len)
+void	ft_swap(char *a, char *b)
 {
-	char	*start;
-	char	*end;
+	char	tmp;
 
-	start = str;
-	end = str + len - 1;
-	while (start < end)
-		ft_swap(start++, end--);
-	return (str);
-}
-
-#include <stdio.h>
-int main()
-{
-	char str[] = "Hello, World!";
-	printf("%s\n", ft_revstr(str, ft_strlen(str)));
-	return (0);
+	tmp = *a;
+	*a = *b;
+	*b = tmp;
 }
