@@ -6,7 +6,7 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 10:19:02 by anpayot           #+#    #+#             */
-/*   Updated: 2024/10/08 14:50:55 by anpayot          ###   ########.fr       */
+/*   Updated: 2024/10/23 19:22:30 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,15 @@
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {
-	unsigned char	*str;
+	const unsigned char	*str;
+	unsigned char		ch;
 
-	str = (unsigned char *)s;
+	ch = (unsigned char)c;
+	str = (const unsigned char *)s;
 	while (n--)
 	{
-		if (*str == (unsigned char)c)
-			return (str);
+		if (*str == ch)
+			return ((void *)str);
 		str++;
 	}
 	return (NULL);
