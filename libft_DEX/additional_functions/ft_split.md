@@ -1,8 +1,10 @@
-# **ft_split**
+# **`ft_split`**
 
 ### **Purpose**:
 
-The `ft_split` function splits a string into an array of substrings based on a specified delimiter character. It allocates memory for each substring and returns an array of these substrings.
+The `ft_split` function splits a given string (`s`) into an array of substrings, using a specified delimiter character (`c`). It allocates memory for each substring and returns a dynamically allocated array of these substrings, ending with a `NULL`pointer.
+
+---
 
 ### **Prototype**:
 
@@ -24,16 +26,14 @@ char **ft_split(char const *s, char c);
 ### **Code Implementation**:
 
 ```c
-#include "libft.h"
-
-static void	free_all(char **arr, char **ptr)
+static void	ft_free(char **arr, char **ptr)
 {
 	while (ptr-- > arr)
 		free(*ptr);
 	free(arr);
 }
 
-static size_t	word_count(const char *s, char c)
+static size_t	ft_counter(const char *s, char c)
 {
 	size_t	count;
 
@@ -47,7 +47,7 @@ static size_t	word_count(const char *s, char c)
 	return (count);
 }
 
-static char	*get_next_word(const char **s, char c)
+static char	*ft_nxtwrd(const char **s, char c)
 {
 	const char	*start;
 
@@ -67,16 +67,16 @@ char	**ft_split(char const *s, char c)
 
 	if (!s)
 		return (NULL);
-	words = word_count(s, c);
+	words = ft_counter(s, c);
 	res = (char **)malloc(sizeof(char *) * (words + 1));
 	if (!res)
 		return (NULL);
 	ptr = res;
 	while (words--)
 	{
-		*ptr = get_next_word(&s, c);
+		*ptr = ft_nxtwrd(&s, c);
 		if (!*ptr++)
-			return (free_all(res, ptr - 1), NULL);
+			return (ft_free(res, ptr - 1), NULL);
 	}
 	*ptr = NULL;
 	return (res);
@@ -88,32 +88,32 @@ char	**ft_split(char const *s, char c)
 
 ### **Explanation**:
 
-1. **`free_all` Function**:
-    - Frees all allocated memory if an allocation fails. It starts from the last allocated memory slot and moves backward, freeing each element.
-2. **`word_count` Function**:
-    - Counts the number of words (substrings) in the input string `s`, using `c` as the delimiter.
-    - It increments the count when a non-delimiter character is followed by a delimiter or the end of the string.
-3. **`get_next_word` Function**:
-    - Finds the next word in the input string `s`, skipping leading delimiters.
-    - Returns a substring using `ft_substr` that contains the word, which is created from the portion of the string from the start to the next delimiter.
-4. **`ft_split` Function**:
-    - The main function that performs the splitting.
-    - It first checks if the input string `s` is `NULL`, returning `NULL` if true.
-    - It allocates memory for an array of strings (`res`), with space for the `words + 1` to accommodate the terminating `NULL`.
-    - It then iterates through the words, using the `get_next_word` function to populate the `res` array.
-    - If any memory allocation fails, `free_all` is called to release allocated resources.
+1. **`ft_free` Helper Function**:
+    - This function frees all previously allocated memory if an allocation fails during the splitting process.
+    - It starts from the last allocated memory slot and works backward to free each element in the array.
+2. **`ft_counter` Helper Function**:
+    - This function counts the number of words (substrings) in the input string `s`, based on the delimiter `c`.
+    - It increments the count whenever a non-delimiter character is followed by either a delimiter or the end of the string.
+3. **`ft_nxtwrd` Helper Function**:
+    - This function finds the next word in the input string `s`, skipping over any leading delimiters.
+    - It returns a substring using `ft_substr`, which contains the word found between the start and the next delimiter.
+4. **`ft_split` Main Function**:
+    - The main function first checks if the input string `s` is `NULL` and returns `NULL` if it is.
+    - It calculates the number of words and allocates memory for an array of strings (`res`), including space for the `NULL` terminator.
+    - It iterates through the words, using `ft_nxtwrd` to populate the array.
+    - If memory allocation fails at any point, `ft_free` is called to release previously allocated resources.
     - The array is terminated with a `NULL` pointer.
 
 ---
 
-### **Visual Focus**
+### **Visual Focus**:
 
-Let’s use the string `"Hello 42 Network"` with the space character `' '` as the delimiter.
+Let’s walk through an example where `ft_split` is used to split the string `"Hello 42 Network"` using the space character `' '` as the delimiter.
 
 ### **Original String**:
 
-```mathematica
-Input String: "Hello  42 Network"
+```c
+Input: "Hello 42 Network"
 Delimiter: ' '
 
 ```
@@ -121,32 +121,43 @@ Delimiter: ' '
 ### **Steps for Splitting**:
 
 1. **Count the Words**:
-    - The function counts three words: `"Hello"`, `"42"`, and `"Network"`.
-2. **Extract the Words Using `get_next_word`**:
-    - The function finds `"Hello"` as the first word.
-    - It skips consecutive spaces, then finds `"42"` as the second word.
-    - Finally, it extracts `"Network"` as the third word.
+    - The function identifies three words: `"Hello"`, `"42"`, and `"Network"`.
+2. **Extract the Words Using `ft_nxtwrd`**:
+    - The first call to `ft_nxtwrd` returns `"Hello"`.
+    - After skipping over consecutive spaces, the next call returns `"42"`.
+    - The final call extracts `"Network"`.
 
-### **Visual Representation of Memory Allocation**:
+### **Memory Representation**:
 
-```jsx
-Original String:   "Hello  42 Network"
-Splitting on:      ' '
-Result Array:      [ "Hello" | "42" | "Network" | NULL ]
+```c
+Result Array: [ "Hello", "42", "Network", NULL ]
 
 ```
 
+---
+
 ### **Edge Cases**:
 
-- **Empty String**: Returns an array with a single `NULL` element.
-- **Consecutive Delimiters**: Skips over consecutive delimiters and does not create empty strings in the array.
-- **Memory Allocation Failure**: Frees any previously allocated memory and returns `NULL`.
-- **NULL Input String**: If the input string is `NULL`, returns `NULL`.
+- **Empty String**:
+    - If the input string is empty (`""`), the function returns an array with a single `NULL` element.
+- **Consecutive Delimiters**:
+    - The function skips over consecutive delimiters, ensuring that no empty strings are added to the result array.
+- **Memory Allocation Failure**:
+    - If memory allocation fails at any point, all previously allocated memory is freed, and the function returns `NULL`.
+- **NULL Input String**:
+    - If the input string `s` is `NULL`, the function returns `NULL`.
+
+---
+
+### **Complexity Analysis**:
+
+- **Time Complexity**: O(n), where `n` is the length of the input string. The function processes each character in the string once.
+- **Space Complexity**: O(w), where `w` is the number of words. This accounts for the memory needed to store the result array and the substrings.
 
 ---
 
 ### **Conclusion**:
 
-This optimized version of `ft_split` uses pointer arithmetic and helper functions to achieve a clean, efficient implementation while adhering to the 42 Norm. The code avoids using explicit indexing, making it concise and leveraging C's capabilities for efficient memory handling.
+The **`ft_split`** function provides an efficient way to split a string into an array of substrings using a specified delimiter. It handles various edge cases, including memory allocation failures, consecutive delimiters, and empty strings. With its use of helper functions, the code remains modular and easy to understand.
 
 ---

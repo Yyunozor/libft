@@ -6,7 +6,7 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 18:34:57 by anpayot           #+#    #+#             */
-/*   Updated: 2024/10/22 23:55:46 by anpayot          ###   ########.fr       */
+/*   Updated: 2024/10/23 13:26:26 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,4 @@ char	*ft_revstr(char *str, size_t len)
 	while (start < end)
 		ft_swap(start++, end--);
 	return (str);
-}
-
-#include <stdio.h>
-int main()
-{
-	char str[] = "Hello, World!";
-	printf("%s\n", ft_revstr(str, ft_strlen(str)));
-	return (0);
 }
