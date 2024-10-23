@@ -1,31 +1,31 @@
-# **`ft_is_valid_base`**
+# **`ft_isvalid_base`**
 
 ### **Purpose**:
 
-The `ft_is_valid_base` function checks if a given string is a valid base for base conversion functions. It verifies that the base contains at least two unique characters and excludes invalid characters such as whitespace, `+`, and `-`. The function also ensures that the base does not contain duplicate characters, which would make conversions ambiguous.
+The `ft_isvalid_base` function checks if a given string can be used as a valid base for base conversion functions. It validates that the base string contains at least two characters, has no duplicate characters, and does not contain invalid symbols such as `+`, `-`, or whitespace characters.
 
 ---
 
 ### **Prototype**:
 
 ```c
-size_t	ft_is_valid_base(const char *base, int *base_len);
+size_t ft_isvalid_base(const char *base, int *base_len);
 
 ```
 
 - **Parameters**:
-    - `base`: The string that represents the base system (e.g., `"0123456789"` for base 10, `"01"` for base 2).
-    - `base_len`: A pointer to an integer where the length of the base will be stored if the base is valid.
+    - `base`: The input string representing the base to be validated.
+    - `base_len`: A pointer to an integer where the length of the base string will be stored.
 - **Return Value**:
     - Returns `1` if the base is valid.
-    - Returns `0` if the base is invalid (e.g., contains invalid characters or duplicates).
+    - Returns `0` if the base is invalid (i.e., contains less than two characters, contains duplicates, or includes `+`, ``, or whitespace characters).
 
 ---
 
 ### **Code Implementation**:
 
 ```c
-size_t	ft_is_valid_base(const char *base, int *base_len)
+size_t	ft_isvalid_base(const char *base, int *base_len)
 {
 	const char	*ptr;
 
@@ -50,116 +50,85 @@ size_t	ft_is_valid_base(const char *base, int *base_len)
 
 ### **Explanation**:
 
-1. **Calculating the Base Length**:
-    - The function begins by calculating the length of the base string using `ft_strlen` from *Libft*. It stores this length in the variable `base_len`.
-    - If the base string is shorter than 2 characters, the function immediately returns `0` because a base must contain at least two unique characters to be valid.
-2. **Validating Each Character**:
-    - The function uses a loop to iterate over each character in the base string (`ptr` points to the current character).
-    - It checks if the character is either `+`, ``, or whitespace using `ft_isspace` (another *Libft* function). If any of these invalid characters are found, the function returns `0` as the base is invalid.
-3. **Checking for Duplicate Characters**:
-    - Inside the loop, `ft_strchr` is used to check if the current character (`ptr`) appears later in the base string (i.e., after `ptr + 1`).
-    - If a duplicate character is found, the function returns `0`, indicating an invalid base.
-4. **Returning Success**:
-    - If the loop completes without finding invalid characters or duplicates, the function returns `1`, indicating that the base is valid.
+1. **Calculating Base Length**:
+    - The function starts by calculating the length of the `base` string using `ft_strlen`. The length is stored in the variable pointed to by `base_len`.
+    - If the length is less than 2, the function returns `0`, indicating that the base is invalid.
+2. **Character Validation**:
+    - The function iterates over each character in the `base` string using the pointer `ptr`.
+    - It checks for invalid characters:
+        - If the character is `+`, ``, or a whitespace (using `ft_isspace`), the base is deemed invalid.
+        - If the character appears more than once in the `base` string (using `ft_strchr` to check for duplicates), the base is also invalid.
+3. **Returning Validity**:
+    - If the base passes all the checks, the function returns `1` to indicate that the base is valid.
 
 ---
 
 ### **Visual Focus**:
 
-Let's break down a couple of example bases and see how this function processes them:
+Let’s look at some example cases to understand how `ft_isvalid_base` works.
 
-### **Example 1**: Valid Base (`"0123456789"`)
+### **Example 1**: Valid Base
 
-- Base: `"0123456789"`
-- Steps:
-    - The length is 10 (valid).
-    - The function iterates through each character and finds no invalid characters (`+`, ``, or whitespace).
-    - No duplicates are found.
-    - **Result**: The base is valid (`1` is returned).
+- **Input**: `"0123456789"`
+- **Length**: `10`
+- **Check**: All characters are unique, and there are no invalid symbols.
+- **Result**: Returns `1` (valid).
 
-### **Example 2**: Invalid Base (`"01234+"`)
+### **Example 2**: Invalid Base (Contains `+`)
 
-- Base: `"01234+"`
-- Steps:
-    - The length is 6 (valid length).
-    - The function detects the `+` character, which is not allowed in a valid base.
-    - **Result**: The base is invalid (`0` is returned).
+- **Input**: `"01234+6789"`
+- **Length**: `10`
+- **Check**: The character `+` is invalid.
+- **Result**: Returns `0` (invalid).
 
-### **Example 3**: Invalid Base (`"012330"`)
+### **Example 3**: Invalid Base (Duplicate Characters)
 
-- Base: `"012330"`
-- Steps:
-    - The length is 6 (valid length).
-    - The function iterates and finds a duplicate `3` and `0`.
-    - **Result**: The base is invalid (`0` is returned).
+- **Input**: `"01234456789"`
+- **Length**: `11`
+- **Check**: The character `4` is repeated.
+- **Result**: Returns `0` (invalid).
 
----
+### **Example 4**: Invalid Base (Single Character)
 
-### **Example Usage**:
-
-Here’s a demonstration of how you might use `ft_is_valid_base` in a context like `ft_atoi_base`:
-
-```c
-#include "libft.h"#include <stdio.h>int	main(void)
-{
-	int	base_len;
-
-	if (ft_is_valid_base("0123456789", &base_len))
-		printf("Base is valid, length = %d\n", base_len);  // Output: Base is valid, length = 10
-	else
-		printf("Base is invalid\n");
-
-	if (ft_is_valid_base("01+234", &base_len))
-		printf("Base is valid, length = %d\n", base_len);
-	else
-		printf("Base is invalid\n");  // Output: Base is invalid
-
-	return (0);
-}
-
-```
+- **Input**: `"0"`
+- **Length**: `1`
+- **Check**: The length is less than `2`.
+- **Result**: Returns `0` (invalid).
 
 ---
 
-### **Optimizations and Improvements**:
+### **Key Points**:
 
-1. **Pointer Arithmetic**:
-    - The loop uses pointer arithmetic (`ptr++` and `ptr + 1`) to efficiently traverse the base string and check for duplicates and invalid characters, minimizing unnecessary indexing.
-2. **Libft Functions**:
-    - The function leverages `ft_strlen` to calculate the length of the base string and `ft_isspace` to check for whitespace characters, ensuring that it integrates smoothly into a *Libft* environment.
-    - `ft_strchr` is used to simplify the process of detecting duplicate characters in the base string.
-
----
-
-### **Common Questions**:
-
-1. **What happens if the base contains duplicates?**
-    - If the base contains duplicate characters, the function returns `0` because a base with duplicates would make the conversion ambiguous (e.g., `"00"` for base 2).
-2. **Why can’t the base include `+`, ``, or whitespace?**
-    - These characters have special meanings in number parsing (e.g., signs or separators). Allowing them in the base would introduce ambiguity during conversions.
-3. **Can the base contain only one character?**
-    - No, a valid base must contain at least two unique characters. A single-character base would not provide enough information to represent numbers.
+1. **Length Requirement**:
+    - A valid base must contain at least two distinct characters.
+2. **Character Validation**:
+    - The function checks that each character in the base string is neither `+`, ``, nor a whitespace character.
+    - It also ensures that each character appears only once.
+3. **Efficient Checking Using `ft_strchr`**:
+    - The function uses `ft_strchr` to check for duplicate characters by searching the rest of the string for the current character.
 
 ---
 
 ### **Edge Cases**:
 
-- **Base with fewer than two characters**: The function immediately returns `0` if the base has less than 2 characters.
-- **Base with invalid characters**: If the base includes `+`, ``, or any whitespace, the function returns `0`.
-- **Base with duplicates**: If the base contains duplicate characters, the function returns `0`.
-- **Empty Base**: The function also handles the case where the base is an empty string and returns `0`.
+- **Empty String (`""`)**:
+    - The function will return `0` because the length is less than `2`.
+- **Base with Whitespace Characters (`"01 23456789"`)**:
+    - The function will return `0` because the base contains a whitespace character.
+- **Base with Special Characters (`"+0123456789"`)**:
+    - The function will return `0` because the base contains the `+` character.
 
 ---
 
 ### **Complexity Analysis**:
 
-- **Time Complexity**: O(b²), where `b` is the length of the base. The function iterates over each character in the base, and for each character, it checks for duplicates using `ft_strchr`, which has linear complexity.
-- **Space Complexity**: O(1) – The function uses a constant amount of space for variables and pointers.
+- **Time Complexity**: O(n^2), where `n` is the length of the base string. The nested use of `ft_strchr` results in a quadratic time complexity in the worst case.
+- **Space Complexity**: O(1) – The function operates in constant space, using only a few variables for character checks.
 
 ---
 
 ### **Conclusion**:
 
-`ft_is_valid_base` is a key utility function that ensures a base string is suitable for conversions like `ft_atoi_base`. By checking for invalid characters, duplicate characters, and ensuring the base has sufficient length, it provides a robust way to validate any base from binary (base 2) to hexadecimal (base 16) and beyond. With built-in error handling and efficient pointer arithmetic, it guarantees that conversions operate correctly and safely.
+The **`ft_isvalid_base`** function provides a reliable way to validate base strings for use in functions like `ft_atoi_base` or `ft_itoa_base`. It ensures the base adheres to required constraints, making it suitable for safe base conversions. This function handles various edge cases and uses a combination of *Libft* functions (`ft_strlen`, `ft_isspace`, and `ft_strchr`) to keep the implementation clean and modular.
 
 ---

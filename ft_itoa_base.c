@@ -6,14 +6,13 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 18:33:37 by anpayot           #+#    #+#             */
-/*   Updated: 2024/10/23 13:49:17 by anpayot          ###   ########.fr       */
+/*   Updated: 2024/10/23 14:27:54 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
-static int	get_num_length(long num, int base_len)
+static int	ft_num_len(long num, int base_len)
 {
 	int	len;
 
@@ -26,7 +25,7 @@ static int	get_num_length(long num, int base_len)
 	return (len);
 }
 
-static int	get_sign_and_absolute(long *num, int base_len)
+static int	ft_sign_abs(long *num, int base_len)
 {
 	if (*num < 0 && base_len == 10)
 	{
@@ -47,8 +46,8 @@ char	*ft_itoa_base(int value, const char *base)
 	if (!ft_isvalid_base(base, &base_len))
 		return (NULL);
 	num = (long)value;
-	sign = get_sign_and_absolute(&num, base_len);
-	num_len = get_num_length(num, base_len) + sign;
+	sign = ft_sign_abs(&num, base_len);
+	num_len = ft_num_len(num, base_len) + sign;
 	result = (char *)malloc(num_len + 1);
 	if (!result)
 		return (NULL);
@@ -62,3 +61,37 @@ char	*ft_itoa_base(int value, const char *base)
 		result[0] = '-';
 	return (result);
 }
+/*
+#include <stdio.h>
+int	main(void)
+{
+	char *result;
+
+	// Test with base 10
+	result = ft_itoa_base(12345, "0123456789");
+	printf("Base 10: \t\t%s\t(Expected: 12345)\n", result);
+	free(result);
+
+	// Test with base 2
+	result = ft_itoa_base(42, "01");
+	printf("Base 2: \t\t%s\t(Expected: 101010)\n", result);
+	free(result);
+
+	// Test with base 16
+	result = ft_itoa_base(12345, "0123456789ABCDEF");
+	printf("Base 16: \t\t%s\t(Expected: 3039)\n", result);
+	free(result);
+
+	// Test with negative number in base 10
+	result = ft_itoa_base(-12345, "0123456789");
+	printf("Base 10 (negative): \t%s\t(Expected: -12345)\n", result);
+	free(result);
+
+	// Test with invalid base
+	result = ft_itoa_base(12345, "01234");
+	if (result == NULL)
+		printf("Invalid base: \t\tNULL\t\t(Expected: Invalid base: NULL)\n");
+
+	return (0);
+}
+*/

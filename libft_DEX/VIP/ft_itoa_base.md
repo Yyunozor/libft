@@ -1,207 +1,194 @@
 # **`ft_itoa_base`**
 
-### **Prototype**:
+### **Purpose**:
 
-```c
-c
-Copy code
-char *ft_itoa_base(int value, const char *base);
-
-```
+The `ft_itoa_base` function converts an integer value to a string representation in a specified base. It supports bases from 2 to 16 and handles negative numbers if the base is 10. The function dynamically allocates memory for the resulting string.
 
 ---
 
-### **Optimized Code Implementation**:
+### **Prototype**:
 
 ```c
-static char	*reverse_str(char *str, size_t len)
-{
-	size_t	i;
-	char	tmp;
+char	*ft_itoa_base(int value, const char *base);
 
-	i = 0;
-	while (i < len / 2)
+```
+
+- **Parameters**:
+    - `value`: The integer value to convert.
+    - `base`: A string representing the set of valid characters for the base.
+- **Return Value**:
+    - Returns a dynamically allocated string representing the integer in the specified base.
+    - Returns `NULL` if the base is invalid or memory allocation fails.
+
+---
+
+### **Code Implementation**:
+
+```c
+static int	ft_num_len(long num, int base_len)
+{
+	int	len;
+
+	len = (num == 0);
+	while (num != 0)
 	{
-		tmp = str[i];
-		str[i] = str[len - 1 - i];
-		str[len - 1 - i] = tmp;
-		i++;
+		num /= base_len;
+		len++;
 	}
-	return (str);
+	return (len);
+}
+
+static int	ft_sign_abs(long *num, int base_len)
+{
+	if (*num < 0 && base_len == 10)
+	{
+		*num = -*num;
+		return (1);
+	}
+	return (0);
 }
 
 char	*ft_itoa_base(int value, const char *base)
 {
 	char		*result;
-	char		*ptr;
-	size_t		base_len;
 	long		num;
+	int			base_len;
 	int			sign;
+	int			num_len;
 
-	if (!ft_is_valid_base(base, &base_len))
+	if (!ft_isvalid_base(base, &base_len))
 		return (NULL);
 	num = (long)value;
-	sign = ft_get_sign(&num, base_len);  // Use ft_get_sign to handle sign
-	result = (char *)malloc(34);  // Allocate memory for 32 digits + sign + '\0'
+	sign = ft_sign_abs(&num, base_len);
+	num_len = ft_num_len(num, base_len) + sign;
+	result = (char *)malloc(num_len + 1);
 	if (!result)
 		return (NULL);
-	ptr = result;
-	if (num == 0)
-		*ptr++ = base[0];  // Handle zero case
-	while (num > 0)
+	result[num_len] = '\0';
+	while (num_len-- > sign)
 	{
-		*ptr++ = base[num % base_len];
+		result[num_len] = base[num % base_len];
 		num /= base_len;
 	}
-	if (sign == -1)
-		*ptr++ = '-';
-	*ptr = '\0';
-	return (reverse_str(result, ptr - result));  // Reverse and return
+	if (sign)
+		result[0] = '-';
+	return (result);
 }
 
 ```
 
 ---
 
-### **Explanation of Key Optimizations**:
+### **Explanation**:
 
-1. **Base Validation**:
-    - The function starts by calling `ft_is_valid_base` to ensure the base string is valid and determine its length. This ensures that only valid bases (2 to 16) are allowed.
-2. **Handling the Sign with `ft_get_sign`**:
-    - `ft_get_sign` is used to handle the sign of the number. This function adjusts the number if it's negative and only applies the negative sign for base 10.
-    - This avoids manually checking for signs and integrates seamlessly with the *Libft* structure.
-3. **Memory Allocation**:
-    - The function allocates enough space for the maximum possible number of digits in a 32-bit integer (32 digits for binary, plus 1 for the sign and 1 for the null terminator).
-4. **String Construction with Pointer Arithmetic**:
-    - Instead of using array indexing (`result[i]`), we use pointer arithmetic (`ptr++`) to build the result string. This improves efficiency and reduces unnecessary operations.
-    - We directly write the digits to the string and increment the pointer to the next position in memory.
-5. **Reversing the String**:
-    - Since the digits are generated in reverse order, the `reverse_str` function is used to reverse the string once it's fully constructed. This uses pointer arithmetic to swap characters and reverse the string in place.
-6. **Handling `0`**:
-    - If the number is `0`, the function handles this case separately by writing the first character of the base to the result string (typically `'0'`).
-
----
-
-### **Libft Function Integration**:
-
-1. **`ft_get_sign`**:
-    - This function is used to handle the sign of the number. It returns `1` if the number is negative and should only apply the negative sign for base 10. This ensures proper sign handling without using a ternary operator.
-    
-    **Example**:
-    
-    ```c
-    int ft_get_sign(long *num, int base_len)
-    {
-        int sign;
-    
-        sign = 1;
-        if (*num < 0 && base_len == 10)
-        {
-            sign = -1;
-            *num = -*num;
-        }
-        return (sign);
-    }
-    
-    ```
-    
-2. **`ft_is_valid_base`**:
-    - This function checks if the base string is valid (contains at least two characters, has no duplicate characters, and doesn’t contain invalid symbols like `+`, ``, or spaces). It returns `1` if the base is valid and `0` otherwise.
-    
-    **Example**:
-    
-    ```c
-    size_t	ft_is_valid_base(const char *base, size_t *base_len)
-    {
-        size_t	i;
-        size_t	j;
-    
-        *base_len = ft_strlen(base);
-        if (*base_len < 2)
-            return (0);
-        i = 0;
-        while (i < *base_len)
-        {
-            if (base[i] == '+' || base[i] == '-' || ft_isspace(base[i]))
-                return (0);
-            j = i + 1;
-            while (j < *base_len)
-            {
-                if (base[i] == base[j])
-                    return (0);
-                j++;
-            }
-            i++;
-        }
-        return (1);
-    }
-    
-    ```
-    
-3. **`ft_numlen`**:
-    - This function is not directly used in this version, but it could be used to calculate the number of digits required for a number in a given base if you wanted to pre-allocate the exact amount of memory needed for the result. However, we opted for a fixed-size allocation here for simplicity.
-    
-    **Example**:
-    
-    ```c
-    size_t	ft_numlen(long num, int base_len)
-    {
-        size_t	len;
-    
-        len = 0;
-        if (num <= 0)
-            len = 1;
-        while (num != 0)
-        {
-            num /= base_len;
-            len++;
-        }
-        return (len);
-    }
-    
-    ```
-    
-4. **`ft_handle_overflow`**:
-    - Although overflow isn’t likely in this context (since `long` is used and the number is being reduced), `ft_handle_overflow` could be integrated if you wanted to ensure that the number being divided by the base stays within bounds during large base conversions.
+1. **`ft_num_len` Helper Function**:
+    - Calculates the number of characters required to represent the number in the given base.
+    - Returns at least 1 if the number is zero (i.e., "0" requires one character).
+    - Continues dividing the number by the base until it becomes zero, counting each step to determine the length.
+2. **`ft_sign_abs` Helper Function**:
+    - Checks if the number is negative and if the base is 10.
+    - If so, it converts the number to its absolute value and returns `1` to indicate the presence of a negative sign.
+    - Returns `0` otherwise.
+3. **Main Function (`ft_itoa_base`)**:
+    - Checks if the base is valid using `ft_isvalid_base`, which ensures the base is at least two characters long and contains no duplicates or invalid characters.
+    - Converts the input value to a `long` to handle edge cases such as `INT_MIN`.
+    - Computes the number of characters needed for the result string using `ft_num_len`, taking the sign into account.
+    - Allocates memory for the result string, including space for the null terminator.
+    - Fills the string in reverse order by calculating the modulus with the base and dividing by the base repeatedly.
+    - Adds a negative sign if the original number was negative and the base is 10.
+    - Returns the resulting string.
 
 ---
 
-### **Example Usage**:
+### **Visual Focus**:
+
+Let’s walk through some examples to understand how `ft_itoa_base` works.
+
+### **Example 1**: Converting `42` to Base 2
+
+- **Input**: `42`, `"01"`
+- **Base**: `2`
+- **Steps**:
+    - Number: `42`, Length: `6` ("101010")
+- **Output**: `"101010"`
+
+### **Example 2**: Converting `12345` to Base 10
+
+- **Input**: `12345`, `"0123456789"`
+- **Base**: `10`
+- **Steps**:
+    - Number: `12345`, Length: `6` (add space for the negative sign)
+    - Output: `"-12345"`
+
+### **Example 3**: Converting `255` to Base 16
+
+- **Input**: `255`, `"0123456789ABCDEF"`
+- **Base**: `16`
+- **Steps**:
+    - Number: `255`, Length: `2` ("FF")
+- **Output**: `"FF"`
+
+---
+
+### **Edge Cases**:
+
+1. **Invalid Base**:
+    - The function returns `NULL` if the base is invalid, i.e., it contains less than two characters, has duplicates, or includes invalid characters.
+2. **Zero Value**:
+    - If the input value is zero, the function correctly returns `"0"`.
+3. **Negative Numbers in Non-Decimal Bases**:
+    - The function only adds a negative sign if the base is 10. For other bases, it represents the number using the absolute value.
+4. **Minimum Integer Value (`INT_MIN`)**:
+    - The function handles this case by converting the integer to a `long` to avoid overflow.
+
+---
+
+### **Complexity Analysis**:
+
+- **Time Complexity**: O(log_b(n)), where `n` is the absolute value of the input number and `b` is the base. This represents the number of divisions required to reach zero.
+- **Space Complexity**: O(log_b(n)) for the resulting string, plus O(1) auxiliary space.
+
+---
+
+### **Test Cases**:
 
 ```c
-#include "libft.h"#include <stdio.h>int main()
+int	main(void)
 {
-	char *binary = ft_itoa_base(42, "01");
-	char *hex = ft_itoa_base(255, "0123456789ABCDEF");
-	char *octal = ft_itoa_base(511, "01234567");
-	char *decimal = ft_itoa_base(-42, "0123456789");
+	char *result;
 
-	printf("42 in binary: %s\n", binary);  // Output: 101010
-	printf("255 in hex: %s\n", hex);  // Output: FF
-	printf("511 in octal: %s\n", octal);  // Output: 777
-	printf("-42 in decimal: %s\n", decimal);  // Output: -42
+	// Test with base 10
+	result = ft_itoa_base(12345, "0123456789");
+	printf("Base 10: \t\t%s\t(Expected: 12345)\n", result);
+	free(result);
 
-	free(binary);
-	free(hex);
-	free(octal);
-	free(decimal);
+	// Test with base 2
+	result = ft_itoa_base(42, "01");
+	printf("Base 2: \t\t%s\t(Expected: 101010)\n", result);
+	free(result);
 
-	return 0;
+	// Test with base 16
+	result = ft_itoa_base(12345, "0123456789ABCDEF");
+	printf("Base 16: \t\t%s\t(Expected: 3039)\n", result);
+	free(result);
+
+	// Test with negative number in base 10
+	result = ft_itoa_base(-12345, "0123456789");
+	printf("Base 10 (negative): \t%s\t(Expected: -12345)\n", result);
+	free(result);
+
+	// Test with invalid base
+	result = ft_itoa_base(12345, "01234");
+	if (result == NULL)
+		printf("Invalid base: \t\tNULL\t\t(Expected: Invalid base: NULL)\n");
+
+	return (0);
 }
 
 ```
-
----
 
 ### **Conclusion**:
 
-This **`ft_itoa_base`** version is fully **Norminette-compliant**:
-
-- **No ternary operators**.
-- **Pointer arithmetic** is used for string construction and reversal.
-- It integrates **Libft functions** (`ft_get_sign`, `ft_is_valid_base`, and optionally `ft_handle_overflow` or `ft_numlen`).
-- Handles edge cases like `0` and `INT_MIN` safely.
-
-This optimized version ensures that your base conversions are clean, efficient, and compliant with the 42 standards. Let me know if you'd like to explore further optimizations or test more specific cases! You're advancing quickly through these challenges!
+The **`ft_itoa_base`** function efficiently converts an integer to a string in any specified base from 2 to 16, handling negative numbers correctly for base 10. It uses modular design and helper functions to keep the implementation clean and handles edge cases gracefully.
 
 ---
