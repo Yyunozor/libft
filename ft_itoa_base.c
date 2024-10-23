@@ -6,7 +6,7 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 18:33:37 by anpayot           #+#    #+#             */
-/*   Updated: 2024/10/17 20:01:43 by anpayot          ###   ########.fr       */
+/*   Updated: 2024/10/23 13:49:17 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char	*ft_itoa_base(int value, const char *base)
 	int			sign;
 	int			num_len;
 
-	if (!ft_is_valbase(base, &base_len))
+	if (!ft_isvalid_base(base, &base_len))
 		return (NULL);
 	num = (long)value;
 	sign = get_sign_and_absolute(&num, base_len);

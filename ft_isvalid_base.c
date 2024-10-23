@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_is_valid_base.c                                 :+:      :+:    :+:   */
+/*   ft_isinbase.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 17:41:25 by anpayot           #+#    #+#             */
-/*   Updated: 2024/10/17 19:49:39 by anpayot          ###   ########.fr       */
+/*   Updated: 2024/10/23 13:47:51 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_is_valbase(const char *base, int *base_len)
+size_t	ft_isvalid_base(const char *base, int *base_len)
 {
 	const char	*ptr;
 

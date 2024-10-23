@@ -6,7 +6,7 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 17:27:43 by anpayot           #+#    #+#             */
-/*   Updated: 2024/10/17 19:54:46 by anpayot          ###   ########.fr       */
+/*   Updated: 2024/10/23 13:49:00 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	ft_atoi_base(const char *str, const char *base)
 	int			digit;
 	const char	*base_ptr;
 
-	if (!ft_is_valbase(base, &base_len))
+	if (!ft_isvalid_base(base, &base_len))
 		return (0);
 	sign = ft_get_sign(&str);
 	result = 0;
