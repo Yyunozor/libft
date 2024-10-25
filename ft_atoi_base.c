@@ -6,7 +6,7 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 17:27:43 by anpayot           #+#    #+#             */
-/*   Updated: 2024/10/23 13:49:00 by anpayot          ###   ########.fr       */
+/*   Updated: 2024/10/25 12:30:25 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,3 +75,41 @@ int	ft_atoi_base(const char *str, const char *base)
 	}
 	return ((int)(result * sign));
 }
+
+/*
+#include <stdio.h>
+int main(void)
+{
+	const char *str = "42";
+	const char *base = "0123456789";
+	int result = ft_atoi_base(str, base);
+	printf("Result: %d\n", result);
+
+	str = "-42";
+	result = ft_atoi_base(str, base);
+	printf("Result: %d\n", result);
+
+	base = "01";
+	str = "101010";
+	result = ft_atoi_base(str, base);
+	printf("Result: %d\n", result);
+
+	base = "0123456789ABCDEF";
+	str = "2A";
+	result = ft_atoi_base(str, base);
+	printf("Result: %d\n", result);
+
+	base = "0123456789abcdef";
+	str = "2a";
+	result = ft_atoi_base(str, base);
+	printf("Result: %d\n", result);
+
+	base = "01234567";
+	str = "52";
+	result = ft_atoi_base(str, base);
+	printf("Result: %d\n", result);
+	
+
+	return 0;
+}
+*/

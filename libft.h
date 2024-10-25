@@ -6,7 +6,7 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 14:08:22 by anpayot           #+#    #+#             */
-/*   Updated: 2024/10/23 13:50:33 by anpayot          ###   ########.fr       */
+/*   Updated: 2024/10/24 21:20:41 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int		ft_isspace(int c);
 int		ft_islower(int c);
 int		ft_isupper(int c);
 
-size_t	ft_numlen(int n);
+int		ft_numlen(int n);
 size_t	ft_isvalid_base(const char *base, int *base_len);
 int		ft_atoi_base(const char *str, const char *base);
 char	*ft_itoa_base(int value, const char *base);

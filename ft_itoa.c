@@ -6,7 +6,7 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 19:47:45 by anpayot           #+#    #+#             */
-/*   Updated: 2024/10/17 16:48:32 by anpayot          ###   ########.fr       */
+/*   Updated: 2024/10/24 21:08:50 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*ft_itoa(int n)
 {
-	size_t	len;
+	int		len;
 	long	nb;
 	char	*str;
 
