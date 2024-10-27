@@ -1,10 +1,12 @@
-### **Purpose**:
+# **`ft_atol`**
 
-The `ft_atol` function converts a string representation of a number into a `long` integer. It handles leading whitespaces, optional signs (`+` or `-`), and includes checks to prevent overflow or underflow. If an overflow or underflow occurs, it returns `LONG_MAX` or `LONG_MIN` accordingly.
+### **Purpose**
+
+The `ft_atol` function converts a string to a `long` integer value, handling optional spaces, optional signs (`+` or `-`), and overflow conditions. It provides a way to convert text-based numbers into `long` values, ensuring safe handling for edge cases.
 
 ---
 
-### **Prototype**:
+### **Prototype**
 
 ```c
 long	ft_atol(const char *str);
@@ -12,18 +14,20 @@ long	ft_atol(const char *str);
 ```
 
 - **Parameters**:
-    - `str`: The string to convert, which may include leading whitespace and an optional sign.
+    - `str`: A pointer to a null-terminated string representing a number.
 - **Return Value**:
-    - The corresponding `long` integer value.
-    - Returns `LONG_MAX` if the number is too large and causes an overflow.
-    - Returns `LONG_MIN` if the number is too small and causes an underflow.
+    - Returns the converted `long` integer if the input is valid.
+    - Returns `LONG_MAX` if the input exceeds the maximum representable `long` value.
+    - Returns `LONG_MIN` if the input exceeds the minimum representable `long` value.
 
 ---
 
-### **Code Implementation**:
+### **Code Implementation**
 
 ```c
-static long	handle_overflow(int sign)
+#include "libft.h"
+
+long	ft_loverflow(int sign)
 {
 	if (sign == 1)
 		return (LONG_MAX);
@@ -32,17 +36,23 @@ static long	handle_overflow(int sign)
 
 long	ft_atol(const char *str)
 {
-	long	result;
 	int		sign;
+	long	result;
 
+	sign = 1;
+	result = 0;
 	while (ft_isspace(*str))
 		str++;
-	sign = ft_get_sign(&str);
-	result = 0;
+	if (*str == '-' || *str == '+')
+	{
+		if (*str == '-')
+			sign = -1;
+		str++;
+	}
 	while (ft_isdigit(*str))
 	{
 		if (result > (LONG_MAX - (*str - '0')) / 10)
-			return (handle_overflow(sign));
+			return (ft_loverflow(sign));
 		result = result * 10 + (*str - '0');
 		str++;
 	}
@@ -53,93 +63,114 @@ long	ft_atol(const char *str)
 
 ---
 
-### **Explanation**:
+### **Explanation**
 
-1. **Whitespace Handling**:
-    - The function uses `ft_isspace` to skip any leading whitespace characters (`' '`, `'\t'`, etc.) in the input string before processing the number. This ensures the conversion begins at the first valid character.
+1. **Overflow Helper Function (`ft_loverflow`)**:
+    - This helper function returns `LONG_MAX` or `LONG_MIN` depending on the `sign`. This helps `ft_atol` handle overflow cases when `result` would exceed `LONG_MAX` or go below `LONG_MIN`.
+2. **Initialization**:
+    - The main function starts by initializing `sign` to `1` and `result` to `0`.
+3. **Skipping Whitespaces**:
+    - The function uses `ft_isspace` to skip over any leading whitespace characters in `str`, ensuring it starts processing at the number itself.
+4. **Sign Detection**:
+    - If the first non-whitespace character is a `'-'` or `'+'`, the `sign` variable is updated accordingly (`1` for `'-'`). After handling the sign, the pointer `str` advances to the next character.
+5. **Digit Conversion Loop**:
+    - The function enters a loop to process each digit character in `str`.
+    - For each digit:
+        - **Overflow Check**: Before adding the next digit, `ft_atol` checks if adding the digit would cause `result` to overflow. This is done by comparing `result` with `(LONG_MAX - (*str - '0')) / 10`. If this condition is met, the function returns the overflow value using `ft_loverflow(sign)`.
+        - **Accumulate Result**: If no overflow is detected, `result` is updated by multiplying it by `10` and adding the current digit.
+    - The loop ends once all digit characters are processed.
+6. **Returning the Final Result**:
+    - After processing all valid characters, the function returns the `result` multiplied by `sign` to give the correctly signed `long` value.
+
+---
+
+### **Visual Representation**
+
+### Example: `" -12345"`
+
+```
+Input String: "   -12345"
+Processed Steps:
+  - Skip whitespaces → `"-12345"`
+  - Detect sign      → `sign = -1`
+  - Convert digits   → result accumulates as 12345
+  - Apply sign       → final result = -12345
+
+```
+
+| Step | Result | Explanation |
+| --- | --- | --- |
+| `" -12345"` | Start | Initial input string. |
+| Skip spaces | `"-12345"` | Whitespaces removed. |
+| Detect sign | `sign = -1` | Sign is negative. |
+| Convert digits | `12345` | Each digit is processed, `result` accumulates. |
+| Apply sign | `-12345` | `result` is multiplied by `sign` to yield `-12345`. |
+
+---
+
+### **Edge Cases Handled**
+
+1. **Whitespace Before Number**:
+    - The function skips over leading whitespace, allowing inputs like `" 123"`.
 2. **Sign Handling**:
-    - The `ft_get_sign` function detects an optional `+` or `` sign and adjusts the sign of the result accordingly. The string pointer is advanced to skip the sign character.
-    - If the string starts with `'-'`, the sign is set to `1`, otherwise it remains `1` (for positive numbers).
-3. **Conversion Loop**:
-    - The main loop processes each digit in the string. It uses `ft_isdigit` to ensure that only valid digit characters are processed.
-    - The function multiplies the `result` by 10 and adds the value of the current digit (by subtracting `'0'` from the character) to accumulate the final number.
-4. **Overflow Detection**:
-    - Before multiplying `result` by 10, the function checks for potential overflow. It compares `result` against `(LONG_MAX - digit) / 10` to ensure that multiplying and adding the next digit will not exceed the maximum value of a `long`.
-    - If overflow is detected, the function returns `LONG_MAX` or `LONG_MIN`, depending on the sign of the number.
-5. **Return**:
-    - After processing all valid digits, the function returns the final result, applying the sign (`result * sign`).
+    - Handles both `+` and `` signs. For example, `" -123"` becomes `123`, and `"+123"` becomes `123`.
+3. **Overflow Handling**:
+    - If the accumulated `result` would exceed `LONG_MAX`, `ft_atol` returns `LONG_MAX` or `LONG_MIN` based on the `sign`.
+4. **Invalid Characters**:
+    - Once the function encounters a non-digit character, it stops parsing and returns the accumulated `result`.
 
 ---
 
-### **Visual Focus**:
+### **Complexity Analysis**
 
-Let’s consider the input string `" -9223372036854775809"`, which exceeds the minimum value representable by a `long`.
-
-1. **Whitespace Skip**:
-    - The function skips the leading spaces in the string, moving the pointer to `'-'`.
-2. **Sign Detection**:
-    - The function detects the `'-'` and sets the sign to `1`.
-3. **Conversion**:
-    - The function processes each digit, updating `result` by multiplying the current result by `10` and adding the value of the next digit.
-4. **Overflow**:
-    - When processing the last few digits, the function detects that multiplying the current result by `10` and adding the next digit would exceed `LONG_MIN`, and therefore returns `LONG_MIN` as the result.
+- **Time Complexity**: O(n), where `n` is the length of the input string. The function processes each character in the string once.
+- **Space Complexity**: O(1), as it uses a constant amount of memory regardless of input size.
 
 ---
 
-### **Example Usage**:
+### **Test Cases**
 
-Here’s how you can use `ft_atol`:
+Here’s an example test file to demonstrate how `ft_atol` behaves with different inputs:
 
 ```c
-int	main(void)
+#include <stdio.h>
+
+int main(void)
 {
-	const char	*str1 = "9223372036854775807";  // LONG_MAX
-	const char	*str2 = "-9223372036854775809"; // Overflow to LONG_MIN
-	const char	*str3 = "42";                   // Regular number
-	const char	*str4 = "   -123abc";           // Stops at non-digit
+	const char *test1 = "12345";
+	const char *test2 = "-98765";
+	const char *test3 = "   +42";
+	const char *test4 = "2147483647";     // LONG_MAX
+	const char *test5 = "-2147483648";    // LONG_MIN
+	const char *test6 = "99999999999999"; // Overflow
 
-	printf("Result 1: %ld\n", ft_atol(str1));  // Output: LONG_MAX (9223372036854775807)
-	printf("Result 2: %ld\n", ft_atol(str2));  // Output: LONG_MIN (-9223372036854775808)
-	printf("Result 3: %ld\n", ft_atol(str3));  // Output: 42
-	printf("Result 4: %ld\n", ft_atol(str4));  // Output: -123
+	printf("Test 1: %ld\n", ft_atol(test1)); // Expected: 12345
+	printf("Test 2: %ld\n", ft_atol(test2)); // Expected: -98765
+	printf("Test 3: %ld\n", ft_atol(test3)); // Expected: 42
+	printf("Test 4: %ld\n", ft_atol(test4)); // Expected: LONG_MAX
+	printf("Test 5: %ld\n", ft_atol(test5)); // Expected: LONG_MIN
+	printf("Test 6: %ld\n", ft_atol(test6)); // Expected: LONG_MAX (overflow)
 
-	return (0);
+	return 0;
 }
+
+```
+
+### Expected Output:
+
+```
+Test 1: 12345
+Test 2: -98765
+Test 3: 42
+Test 4: 2147483647
+Test 5: -2147483648
+Test 6: 9223372036854775807  (LONG_MAX, due to overflow)
 
 ```
 
 ---
 
-### **Optimizations**:
+### **Conclusion**
 
-- **Overflow Detection**: By calculating `(LONG_MAX - (*str - '0')) / 10`, the function avoids performing operations that could lead to overflow. If the number is too large, the function returns the appropriate value (`LONG_MAX` or `LONG_MIN`).
-- **Pointer Arithmetic**: The function advances the string pointer `str` directly during conversion, avoiding unnecessary indexing.
-- **Use of `Libft` Functions**: The use of `ft_isspace` and `ft_isdigit` integrates well with the rest of *Libft*, keeping the code consistent and reusable.
-
----
-
-### **Edge Cases**:
-
-1. **Overflow and Underflow**:
-    - The function detects and handles cases where the number is too large or too small to fit in a `long`, returning `LONG_MAX` or `LONG_MIN` as appropriate.
-2. **Leading Whitespace**:
-    - Leading whitespace is ignored, allowing the function to handle strings like `" 123"` correctly.
-3. **Invalid Characters**:
-    - The function stops converting when it encounters a non-numeric character, returning the result accumulated so far. For example, `"123abc"` would return `123`.
-4. **Empty or Non-Numeric Strings**:
-    - If the string contains no valid digits, the function will return `0`.
-
----
-
-### **Complexity Analysis**:
-
-- **Time Complexity**: O(n), where `n` is the length of the numeric portion of the string. The function processes each character exactly once.
-- **Space Complexity**: O(1), as the function only uses a constant amount of extra space for variables such as `result`, `sign`, and `str`.
-
----
-
-### **Conclusion**:
-
-`ft_atol` is a robust function that handles the conversion of strings to `long` integers, including the proper handling of whitespace, signs, and overflow detection. By leveraging *Libft* functions like `ft_isspace` and `ft_isdigit`, and using efficient pointer arithmetic, it ensures high performance while adhering to the 42 Norm.
-
+`ft_atol` is a robust string-to-long converter that handles whitespace, sign, overflow, and invalid characters. It’s useful for cases where you need to interpret large numerical strings safely without risking overflow errors in C.
 ---

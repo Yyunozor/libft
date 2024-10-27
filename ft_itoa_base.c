@@ -6,7 +6,7 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 18:33:37 by anpayot           #+#    #+#             */
-/*   Updated: 2024/10/25 12:29:42 by anpayot          ###   ########.fr       */
+/*   Updated: 2024/10/27 17:32:00 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,11 @@ int	main(void)
 	// Test with base 2
 	result = ft_itoa_base(42, "01");
 	printf("Base 2: \t\t%s\t(Expected: 101010)\n", result);
+	free(result);
+
+	// Test with base 8
+	result = ft_itoa_base(12345, "01234567");
+	printf("Base 8: \t\t%s\t(Expected: 30071)\n", result);
 	free(result);
 
 	// Test with base 16
