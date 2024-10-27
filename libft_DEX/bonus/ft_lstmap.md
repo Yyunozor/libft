@@ -152,3 +152,207 @@ Content: Node 3
 ### **Conclusion**:
 
 The **`ft_lstmap`** function provides a reliable way to apply transformations to each node in a linked list while ensuring memory is managed correctly, even if an error occurs. This function is highly flexible, allowing you to apply custom transformations and cleanup procedures for any linked list application.
+
+---
+
+# MORE!!!
+
+# **`ft_lstmap`**
+
+## **Purpose**
+
+The `ft_lstmap` function is a powerful tool for creating a transformed linked list. It applies a specified transformation function (`f`) to each element of an existing list and returns a new list with the transformed nodes. The function carefully handles memory to prevent leaks if any transformation or allocation fails.
+
+---
+
+## **Prototype**
+
+```c
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+
+```
+
+- **Parameters:**
+    - `lst`: A pointer to the first node of the original list.
+    - `f`: A function applied to each node's content, returning a new transformed value.
+    - `del`: A function used to free a node's content if memory allocation fails.
+- **Return Value:**
+    - Returns a pointer to the new list where each node's content has been transformed by `f`.
+    - Returns `NULL` if memory allocation fails.
+
+---
+
+## **How It Works: Step-by-Step**
+
+### 1. **Initialization**
+
+At the beginning, the function initializes `new_list` to `NULL`, creating an empty list to hold the transformed nodes:
+
+```c
+t_list	*new_list = NULL;
+
+```
+
+### 2. **Looping Through the List**
+
+The function uses a `while` loop to go through each node in the original list (`lst`). If either `lst` or `f` is `NULL`, the function immediately exits without processing any nodes.
+
+```c
+while (lst && f)
+
+```
+
+### 3. **Applying the Transformation Function `f`**
+
+Within each loop iteration, `f` is applied to the content of the current node (`lst->content`), producing `new_content`.
+
+```c
+new_content = f(lst->content);
+
+```
+
+### **Visual Example of Transformation Function `f`**
+
+Let’s say `f` duplicates each string content. If our original list has `Node 1 -> Node 2 -> Node 3`, applying `f` would duplicate these strings for use in the new list.
+
+| Original Node Content | Transformed Content (by `f`) |
+| --- | --- |
+| `"Node 1"` | `"Node 1"` (duplicate) |
+| `"Node 2"` | `"Node 2"` (duplicate) |
+| `"Node 3"` | `"Node 3"` (duplicate) |
+
+### 4. **Handling Transformation Failures**
+
+If `f` fails and `new_content` is `NULL`, the function calls `ft_lstclear` to free all previously allocated nodes in `new_list` and returns `NULL`, ensuring no memory leaks.
+
+```c
+if (!new_content)
+{
+	ft_lstclear(&new_list, del);
+	return (NULL);
+}
+
+```
+
+### 5. **Creating a New Node with `ft_lstnew`**
+
+If `new_content` is valid, the function creates a new node using `ft_lstnew(new_content)`. This new node will hold the transformed content.
+
+```c
+new_node = ft_lstnew(new_content);
+
+```
+
+### **Visual Representation of Adding Nodes**
+
+Here’s how nodes are added to `new_list` as `ft_lstmap` processes each original node:
+
+```
+Original list:   [Node 1] -> [Node 2] -> [Node 3]
+
+```
+
+| Step | Action | `new_list` Structure |
+| --- | --- | --- |
+| 1 | Add transformed `"Node 1"` | [Node 1 (dup)] |
+| 2 | Add transformed `"Node 2"` | [Node 1 (dup)] -> [Node 2 (dup)] |
+| 3 | Add transformed `"Node 3"` | [Node 1 (dup)] -> [Node 2 (dup)] -> [Node 3 (dup)] |
+
+### 6. **Handling Node Creation Failures**
+
+If `ft_lstnew` fails (returns `NULL`), it frees the new content with `del` and clears all nodes created so far in `new_list`.
+
+```c
+if (!new_node)
+{
+	del(new_content);
+	ft_lstclear(&new_list, del);
+	return (NULL);
+}
+
+```
+
+This ensures that all allocated memory is freed if an error occurs.
+
+### 7. **Adding the New Node to the New List**
+
+If the new node is successfully created, it’s added to the end of `new_list` with `ft_lstadd_back`.
+
+```c
+ft_lstadd_back(&new_list, new_node);
+
+```
+
+### 8. **Moving to the Next Node**
+
+The function then moves to the next node in the original list (`lst = lst->next`) and continues the process.
+
+```c
+lst = lst->next;
+
+```
+
+### **Final Output**
+
+After processing all nodes, `ft_lstmap` returns the head of `new_list`. The original list remains unchanged, but we now have a new list where each node contains transformed content.
+
+---
+
+## **Complete Example**
+
+Let’s say our original list is `[ "Node 1" -> "Node 2" -> "Node 3" ]` and the function `f` simply duplicates each string.
+
+```c
+t_list	*list = ft_lstnew(ft_strdup("Node 1"));
+ft_lstadd_back(&list, ft_lstnew(ft_strdup("Node 2")));
+ft_lstadd_back(&list, ft_lstnew(ft_strdup("Node 3")));
+
+t_list	*new_list = ft_lstmap(list, &ft_strdup, &free);
+
+```
+
+- **Original List**: `[ "Node 1" -> "Node 2" -> "Node 3" ]`
+- **Transformed List (New List)**: `[ "Node 1" (dup) -> "Node 2" (dup) -> "Node 3" (dup) ]`
+
+If any memory allocation fails during the transformation, `ft_lstmap` ensures that all allocated memory is freed, and it returns `NULL`.
+
+---
+
+## **Edge Cases**
+
+1. **Empty List (`lst == NULL`)**:
+    - Returns `NULL` as there is no content to map.
+2. **Null Transformation Function (`f == NULL`)**:
+    - No transformations can be applied, so the function returns `NULL`.
+3. **Memory Allocation Failure**:
+    - If `f` or `ft_lstnew` fails at any point, the function clears all allocated nodes in `new_list` to avoid memory leaks.
+
+---
+
+## **Diagram Summary**
+
+Here’s a step-by-step illustration:
+
+```
+Original list:       [ "Node 1" ] -> [ "Node 2" ] -> [ "Node 3" ]
+
+1. Apply `f` to Node 1 -> Duplicate "Node 1" -> Add to `new_list`
+   new_list:          [ "Node 1" (dup) ]
+
+2. Apply `f` to Node 2 -> Duplicate "Node 2" -> Add to `new_list`
+   new_list:          [ "Node 1" (dup) ] -> [ "Node 2" (dup) ]
+
+3. Apply `f` to Node 3 -> Duplicate "Node 3" -> Add to `new_list`
+   new_list:          [ "Node 1" (dup) ] -> [ "Node 2" (dup) ] -> [ "Node 3" (dup) ]
+
+```
+
+If any transformation or node creation fails, `ft_lstclear` frees all nodes in `new_list`, ensuring no memory is leaked.
+
+---
+
+### **Conclusion**
+
+`ft_lstmap` is an efficient way to create a transformed copy of a linked list in C, with strong error-handling to manage memory properly. This function can be extended to perform various transformations by passing different functions for `f` and `del`, making it a versatile tool for list manipulation.
+
+---
