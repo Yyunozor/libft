@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/03 14:08:22 by anpayot           #+#    #+#             */
-/*   Updated: 2024/10/24 21:20:41 by anpayot          ###   ########.fr       */
+/*   Created: 2024/10/30 21:35:32 by anpayot           #+#    #+#             */
+/*   Updated: 2024/10/30 21:35:39 by anpayot          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,5 +82,9 @@ char	*ft_revstr(char *str, size_t len);
 long	ft_atol(const char *str);
 
 void	ft_swap(char *a, char *b);
+void	ft_putstr(char *s);
+void	ft_putchar(char c);
+void	ft_putnbr(int n);
+void	ft_putlong(long n);
 
 #endif
