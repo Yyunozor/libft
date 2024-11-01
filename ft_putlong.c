@@ -5,13 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/30 21:29:10 by anpayot           #+#    #+#             */
-/*   Updated: 2024/10/30 21:30:49 by anpayot          ###   ########.ch       */
+/*   Created: 2024/11/01 02:06:28 by anpayot           #+#    #+#             */
+/*   Updated: 2024/11/01 02:06:28 by anpayot          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <limits.h>
 
 void	ft_putlong_recursive(long n, char *buffer, int i)
 {
