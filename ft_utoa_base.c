@@ -5,14 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/05 15:41:49 by anpayot           #+#    #+#             */
-/*   Updated: 2024/11/05 15:41:54 by anpayot          ###   ########.ch       */
+/*   Created: 2024/11/05 17:01:13 by anpayot           #+#    #+#             */
+/*   Updated: 2024/11/05 17:01:13 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-// Convert an unsigned long long integer to a string in the specified base
 char	*ft_utoa_base(unsigned long long value, const char *base)
 {
 	int		base_len;
