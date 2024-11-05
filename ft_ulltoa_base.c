@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/05 17:01:13 by anpayot           #+#    #+#             */
-/*   Updated: 2024/11/05 17:28:59 by anpayot          ###   ########.fr       */
+/*   Created: 2024/11/05 17:46:46 by anpayot           #+#    #+#             */
+/*   Updated: 2024/11/05 17:47:32 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_utoa_base(unsigned long long value, const char *base)
+char	*ft_ulltoa_base(unsigned long long value, const char *base)
 {
 	int		base_len;
 	int		num_len;
