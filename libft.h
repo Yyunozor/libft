@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/05 01:15:59 by anpayot           #+#    #+#             */
-/*   Updated: 2024/11/05 01:15:59 by anpayot          ###   ########.ch       */
+/*   Created: 2024/11/05 15:22:46 by anpayot           #+#    #+#             */
+/*   Updated: 2024/11/05 15:23:12 by anpayot          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,7 @@ void	ft_putchar(char c);
 void	ft_putnbr(int n);
 void	ft_putlong(long n);
 char	*ft_utoa_base(unsigned long long value, const char *base);
+int		ft_numlen_base(unsigned long long num, int base_len);
+
 
 #endif
