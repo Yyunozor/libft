@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/17 20:24:34 by anpayot           #+#    #+#             */
-/*   Updated: 2024/10/23 00:19:50 by anpayot          ###   ########.fr       */
+/*   Created: 2024/11/05 01:12:00 by anpayot           #+#    #+#             */
+/*   Updated: 2024/11/05 01:12:00 by anpayot          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstadd_front(t_list **lst, t_list *new)
+void	ft_lstadd_front(t_list **lst, t_list *newl)
 {
 	if (new == NULL)
 		return ;
