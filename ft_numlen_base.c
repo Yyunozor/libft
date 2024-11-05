@@ -1,0 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_numlen_base.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/05 00:53:58 by anpayot           #+#    #+#             */
+/*   Updated: 2024/11/05 00:53:58 by anpayot          ###   ########.ch       */
+/*                                                                            */
+/* ************************************************************************** */
+
+int	ft_numlen_base(unsigned long long num, int base_len)
+{
+	int	len;
+
+	len = (num == 0);
+	while (num != 0) 
+	{
+		num /= base_len;
+		len++;
+	}
+	return (len);
+}

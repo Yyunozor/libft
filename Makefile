@@ -11,7 +11,7 @@ SRC = ft_numlen.c ft_isvalid_base.c ft_atoi_base.c ft_atol.c ft_revstr.c ft_itoa
 		ft_putendl_fd.c ft_putnbr_fd.c ft_swap.c ft_putchar.c ft_putstr.c ft_putnbr.c ft_putlong.c \
 		ft_lstnew_bonus.c ft_lstadd_back_bonus.c ft_lstadd_front_bonus.c ft_lstclear_bonus.c \
 		ft_lstdelone_bonus.c ft_lstiter_bonus.c ft_lstlast_bonus.c ft_lstmap_bonus.c ft_lstsize_bonus.c \
-		ft_utoa_base.c \
+		ft_utoa_base.c ft_numlen_base.c \
 
 
 #BONUS_SRC = ft_lstnew_bonus.c ft_lstadd_back_bonus.c ft_lstadd_front_bonus.c ft_lstclear_bonus.c \
