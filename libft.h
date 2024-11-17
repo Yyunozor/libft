@@ -6,7 +6,7 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 17:47:46 by anpayot           #+#    #+#             */
-/*   Updated: 2024/11/05 17:47:47 by anpayot          ###   ########.fr       */
+/*   Updated: 2024/11/17 03:50:52 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,5 @@ void	ft_putnbr(int n);
 void	ft_putlong(long n);
 char	*ft_ulltoa_base(unsigned long long value, const char *base);
 int		ft_numlen_base(unsigned long long num, int base_len);
-
 
 #endif
