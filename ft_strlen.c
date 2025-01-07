@@ -6,7 +6,7 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 18:33:22 by anpayot           #+#    #+#             */
-/*   Updated: 2024/10/08 14:04:19 by anpayot          ###   ########.fr       */
+/*   Updated: 2025/01/07 21:36:04 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 size_t	ft_strlen(const char *s)
 {
-	size_t	len;
+	const char	*start;
 
-	len = 0;
-	while (*s++)
-		len++;
-	return (len);
+	start = s;
+	while (*s)
+		s++;
+	return (s - start);
 }
