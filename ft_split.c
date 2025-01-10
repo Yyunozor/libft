@@ -6,7 +6,7 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 18:24:43 by anpayot           #+#    #+#             */
-/*   Updated: 2024/10/23 19:05:32 by anpayot          ###   ########.fr       */
+/*   Updated: 2025/01/10 11:04:31 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,16 @@ static void	ft_free(char **arr, char **ptr)
 
 static size_t	ft_counter(const char *s, char c)
 {
-	size_t	count;
+	size_t		count;
+	const char	*ptr;
 
 	count = 0;
-	while (*s)
+	ptr = s;
+	while (*ptr)
 	{
-		if (*s != c && (!s[1] || s[1] == c))
+		if (*ptr != c && (*(ptr + 1) == c || !*(ptr + 1)))
 			count++;
-		s++;
+		ptr++;
 	}
 	return (count);
 }
